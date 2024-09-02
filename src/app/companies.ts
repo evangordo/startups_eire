@@ -3,6 +3,7 @@
 // - Hardware
 // - SaaS
 // - AI
+// - Security
 // - Gaming
 // - FinTech
 // - HealthTech
@@ -10,6 +11,18 @@
 // - Other
 
 export const COMPANIES = [
+  {
+    name: "Kota",
+    description:
+      "The ultimate insurance and retirement platform for modern companies.",
+    founded: "2022",
+    category: "FinTech",
+    jobs: "https://kota.com/careers",
+    linkedin: "https://www.linkedin.com/company/kotabenefits/",
+    twitter: "https://x.com/kota_benefits",
+    location: "Dogpatch labs, D1",
+  },
+
   {
     name: "StoreHero",
     description:
@@ -19,7 +32,7 @@ export const COMPANIES = [
     jobs: "https://storehero.ai/careers/",
     linkedin: "https://www.linkedin.com/company/storehero",
     twitter: "https://x.com/StoreHeroApp",
-    location: "Thomoas st, Iconic Offices",
+    location: "Thomas St, Iconic Offices",
   },
   {
     name: "Evervault",
@@ -30,7 +43,7 @@ export const COMPANIES = [
     jobs: "https://evervault.com/careers/",
     linkedin: "https://www.linkedin.com/company/evervault",
     twitter: "https://x.com/evervault",
-    location: "Dublin",
+    location: " Exchequer Chambers, 23 Exchequer St, Dublin 2",
   },
   {
     name: "Tines",
@@ -39,102 +52,78 @@ export const COMPANIES = [
     founded: "2018",
     category: "SaaS",
     jobs: "https://www.tines.com/careers",
-    linkedin: "https://www.linkedin.com/company/tines/",
-    twitter: "https://twitter.com/tines_io",
-    location: "Dublin",
+    linkedin: "https://www.linkedin.com/company/tines-io/",
+    twitter: "https://x.com/tines_hq",
+    location: "The Acedmy, 42 Pearse St, Dublin 2",
   },
   {
-    name: "Cubic Telecom",
+    name: "CubicTelecom",
     description:
       "Cubic Telecom offers software solutions to help businesses across automotive, agriculture and transportation industries enhance their products and access data analytics on customer behaviour.",
-    founded: "2012",
+    founded: "2009",
     category: "SaaS",
+    location: "The Hive, Dublin 18",
     jobs: "https://www.cubictelecom.com/careers/",
     linkedin: "https://www.linkedin.com/company/cubic-telecom/",
     twitter: "https://twitter.com/cubictelecom",
   },
   {
-    name: "Prevedere",
+    name: "BrowserStack",
     description:
-      "Prevedere is a global leader in AI for supply chain planning and forecasting. ",
+      "The most reliable web and mobile app testing platform on the market.",
+    founded: "2011",
+    linkedin: "https://www.linkedin.com/company/browserstack/",
+    location: "North Dock, Dublin 1",
     category: "SaaS",
-    jobs: "https://www.prevedere.com/careers/",
-    linkedin: "https://www.linkedin.com/company/prevedere/",
-    twitter: "https://twitter.com/prevedere",
-    location: "Dublin",
+    jobs: "https://www.browserstack.com/careers",
+    twitter: "https://x.com/browserstack",
+  },
+  {
+    name: "KitmanLabs",
+    founded: "2012",
+    description:
+      "Kitman Labs is a sports technology company that uses data and AI to help athletes perform at their best.",
+    category: "AI",
+    jobs: "https://jobs.lever.co/kitmanlabs",
+    linkedin: "https://www.linkedin.com/company/kitman-labs/",
+    twitter: "https://x.com/kitmanlabs",
+    location: "Joyces Court, Dublin 1",
   },
 
   {
-    name: "UrbanVolt",
-    description:
-      "UrbanVolt is a solar-as-a-service startup that helps large corporate energy users access cleaner energy options by managing the design, installation and maintenance of solar panels.",
-    founded: "2015",
-    category: "Other",
-    jobs: "https://urbanvolt.com/careers/",
-    linkedin: "https://www.linkedin.com/company/urbanvolt/",
-    twitter: "https://twitter.com/urbanvolt",
-    location: "Dublin",
-  },
-
-  {
-    name: "FIRE1",
-    description:
-      "FIRE1 is developing an implant that allows heart failure and heart disease patients to be monitored remotely by their doctors.",
-    founded: "2014",
-    category: "HealthTech",
-    jobs: "https://fire1foundry.com/careers/",
-    linkedin: "https://www.linkedin.com/company/fire1/",
-    twitter: "https://twitter.com/FIRE1Foundry",
-    location: "Dublin",
-  },
-  {
-    name: "NomuPay",
-    description:
-      "NomuPay is a unified payments startup offering a platform that helps companies expand and scale across Europe and Southeast Asia by enabling easier local payment acceptance.",
-    founded: "2021",
-    category: "FinTech",
-    jobs: "https://nomupay.com/careers/",
-    linkedin: "https://www.linkedin.com/company/nomupay/",
-    twitter: "https://twitter.com/NomuPay",
-    location: "Dublin",
-  },
-  {
-    name: "Luma Vision",
+    name: "LumaVision",
     description:
       "Luma Vision is a 4D cardiac imaging and navigation end-to-end platform offering VERAFEYE, a tool for real-time imaging guidance during cardiac surgery.",
     founded: "2017",
     category: "HealthTech",
-    jobs: "https://luma-ai.com/careers",
-    linkedin: "https://www.linkedin.com/company/luma-vision/",
-    location: "Dublin and Munich",
+    jobs: "https://lumavision.com/open-careers/",
+    linkedin: "https://www.linkedin.com/feed/",
+    twitter: "https://twitter.com/LumaVision",
+    location: "Beech Hill Road, Dublin 4",
+  },
+
+  {
+    name: "Manna",
+    description:
+      "Manna is a platform that helps companies understand and improve their employee experience.",
+    founded: "2018",
+    category: "Hardware",
+    jobs: "https://www.manna.aero/careers",
+    linkedin:
+      "https://www.linkedin.com/company/mannaaero/?originalSubdomain=ie",
+    twitter: "https://x.com/MannaAero",
+    location: "Nexus UCD, Dublin 4",
   },
   {
-    name: "Pulsate",
+    name: "&Open",
     description:
-      "Pulsate is an end-to-end context marketing platform for mobile applications, offering live audience segmentation and an easy-to-use campaign builder for content delivery.",
-    founded: "2013",
-    category: "SaaS",
-    jobs: "https://pulsatehq.com/careers",
-    linkedin: "https://www.linkedin.com/company/pulsate-hq/",
-    location: "Dublin",
-  },
-  {
-    name: "OOHPod",
-    description:
-      "OOHPod offers carrier-neutral parcel lockers that can be opened for all carriers, consumers, and merchants, providing a one-stop delivery service.",
-    founded: "2021",
-    category: "Other",
-    linkedin: "https://www.linkedin.com/company/oohpod/",
-    location: "Ireland",
-  },
-  {
-    name: "Coroflo",
-    description:
-      "Coroflo is a health tech startup focusing on breastfeeding technology, providing Coro, a silicone nipple shield with a patented micro-flow measurement system.",
+      "At &Open, they're redefining corporate gifting. They create unique, memorable experiences for employees and customers alike. ",
     founded: "2017",
-    category: "HealthTech",
-    linkedin: "https://www.linkedin.com/company/coroflo/",
-    location: "Dublin",
+    category: "SaaS",
+    jobs: "https://andopen.co/company/careers",
+    linkedin: "https://www.linkedin.com/company/&open/",
+    twitter: "https://x.com/andopen_",
+    location: "Dublin 6",
   },
   {
     name: "CliniShift",
@@ -142,8 +131,192 @@ export const COMPANIES = [
     founded: "2016",
     category: "HealthTech",
     linkedin: "https://www.linkedin.com/company/clinishift/",
+    location: "The Greenway Hub, Dublin 7",
+  },
+  {
+    name: "LearnUpon",
+    description:
+      "Award-winning LMS Platform — Deliver high quality online training to employees, customers or partners. 100+ features.",
+
+    founded: "2012",
+    category: "EdTech",
+    jobs: "https://careers.learnupon.com/",
+    linkedin: "https://www.linkedin.com/company/learnupon?originalSubdomain=ie",
+
+    location: "Arran Quay, Dublin 7",
+  },
+  {
+    name: "Legitify",
+    description:
+      "Legitify helps companies and individuals solve their everyday notarization needs globally, empowering them to notarize documents online from anywhere, creating an efficient and smooth experience while lowering costs",
+    founded: "2020",
+    category: "Software",
+    jobs: "https://www.legitify.eu/career",
+    linkedin: "https://www.linkedin.com/company/legitify/",
+    location: "Riverside House, Dublin 2",
+  },
+  {
+    name: "Oblivious",
+    description:
+      "Tool to allow you to use your sensitive data with internal and external partners.",
+    founded: "2014",
+    category: "Security",
+    jobs: "https://www.oblivious.com/contactus",
+    linkedin: "https://www.linkedin.com/company/oblivious/",
     location: "Dublin",
-    founders: "Aimée Madden and David Wigle",
-    funding: "€11.3K",
+  },
+  {
+    name: "VelaGames",
+    description:
+      " Player first game development of innovative multiplayer co-op. Without exception.",
+    jobs: "https://vela.games/careers",
+    linkedin: "https://www.linkedin.com/company/vela-games/",
+    twitter: "https://x.com/VelaGamesLive",
+    location: " Fenian Street, D2",
+    founded: "2012",
+    category: "Gaming",
+  },
+  {
+    name: "EverCam",
+    description:
+      "Evercam records every second of your construction project and unifies fixed-position cameras, in one central location.",
+    founded: "2013",
+    category: "Security",
+    jobs: "https://jobs.evercam.io/jobs/Careers",
+    linkedin: "https://www.linkedin.com/company/evercam/about/",
+    twitter: "https://x.com/evrcm",
+    location: "Granby Row, Dublin 1",
+  },
+  {
+    name: "Nuritas",
+    description:
+      "Nuritas want to empower people to live healthier lives, with the use of AI and life science",
+    founded: "2014",
+    category: "HealthTech",
+    jobs: "https://www.bolt.eu/careers/",
+    linkedin: "https://www.linkedin.com/company/nuritas/about/",
+    twitter: "https://x.com/NuritasResearch",
+    location: "Dawson Street, Dublin 2",
+  },
+  {
+    name: "AerSoleir",
+    description:
+      "Developing best-in-class onshore wind, solar and energy storage projects throughout Europe.",
+    founded: "2014",
+    category: "Hardware",
+    jobs: "https://aersoleir.com/careers/",
+    linkedin: "https://www.linkedin.com/company/aersoleir/",
+    twitter: "https://x.com/AerSoleir",
+    location: "Dublin",
+  },
+  {
+    name: "Wayflyer",
+    description:
+      "Providing eCommerce businesses with fairer, faster, and more flexible funding.",
+    founded: "2019",
+    location: "Dublin 2",
+    category: "SaaS",
+    linkedin: "https://www.linkedin.com/company/wayflyer/",
+    jobs: "https://wayflyer.com/careers",
+    twitter: "https://x.com/wayflyerapp",
+  },
+  {
+    name: "Jamango",
+    description:
+      "Jamango! is a browser-native gaming platform that allows anyone to create and play user-generated games instantly. ",
+    linkedin: "https://www.linkedin.com/company/jamangogame/",
+    founded: "2023",
+    jobs: "https://jamango.hirehive.com/",
+    twitter: "https://x.com/jamangogame",
+    category: "Gaming",
+    location: "Remote",
+  },
+  {
+    name: "Fresco",
+    description:
+      "Fresco is a KitchenOS platform that helps companies understand and improve their kitchen operations.",
+    founded: "2016",
+    category: "Other",
+    jobs: "https://www.frescocooks.com/careers",
+    linkedin: "https://www.linkedin.com/company/frescocooks/",
+    twitter: "https://x.com/FrescoCooks",
+    location: "Dublin",
+  },
+  {
+    name: "Nory",
+    description: "The Operating System The Restaurant Industry Deserves.",
+    founded: "2021",
+    location: "Dogpatch labs, Dublin 1",
+    linkedin: "https://www.linkedin.com/company/asknory/",
+    twitter: "https://x.com/asknory",
+    category: "AI",
+    jobs: "https://nory.ai/careers/",
+  },
+  {
+    name: "Spectrum Life",
+    description:
+      "Digital healthcare solution provider for insurers, employers and educators.",
+    founded: "2018",
+    category: "HealthTech",
+    jobs: "https://spectrumlife.breezy.hr/",
+    linkedin: "https://www.linkedin.com/company/spectrumlife/",
+    twitter: "https://twitter.com/SpectrumLifeHQ",
+    location: "Merrion Square, Dublin 2",
+  },
+  {
+    name: "EdgeTier",
+    description:
+      "Real-time AI analytics platform that helps customer contact centres improve their service.",
+    founded: "2015",
+    category: "AI",
+    jobs: "https://www.edgetier.com/careers",
+    linkedin: "https://www.linkedin.com/company/edgetier/",
+    twitter: "https://twitter.com/EdgeTier",
+    location: "Westland Sqaure, Dublin 2",
+  },
+  {
+    name: "Roadie",
+    description: "Provider of Backstage as a service for developer platforms.",
+    founded: "2020",
+    category: "Software",
+    jobs: "https://careers.roadie.io/",
+    linkedin: "https://www.linkedin.com/company/roadiehq/",
+    twitter: "https://x.com/roadiehq",
+    location: "Remote",
+  },
+
+  {
+    name: "Alt21",
+    description:
+      "Multi-currency account solutions made simple and affordable for business owners and finance teams teams worldwide.",
+    founded: "2016",
+    category: "FinTech",
+    jobs: "https://www.alt21.com/careers/",
+    linkedin: "https://www.linkedin.com/company/alt21/about/",
+    twitter: "https://x.com/ALT21_",
+    location: "Custome House Quay, Dublin 1",
+  },
+
+  {
+    name: "ChannelSight",
+    description:
+      "Ecommerce intelligence platform for brands to optimize their online sales strategies.",
+    founded: "2013",
+    category: "SaaS",
+    jobs: "https://www.channelsight.com/careers",
+    linkedin: "https://www.linkedin.com/company/channelsight/",
+    twitter: "https://twitter.com/ChannelSight",
+    location: "Dublin 2",
+  },
+  {
+    name: "Circit",
+    description:
+      "Platform connecting banks, accounting firms, and clients during financial audits.",
+    founded: "2017",
+    category: "FinTech",
+    jobs: "https://circit.io/careers",
+    linkedin: "https://www.linkedin.com/company/circit-ltd./",
+    twitter: "https://x.com/circit_io",
+    location: "Mayor Street, D1",
   },
 ];

@@ -11,6 +11,8 @@ export const categoryColor = (category: string) => {
     case "HealthTech":
       return "pink";
     case "EdTech":
+      return "purple";
+    case "Security":
       return "orange";
     case "Other":
       return "gray";
