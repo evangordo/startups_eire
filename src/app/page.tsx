@@ -6,7 +6,7 @@ import JobsBoard from "./components/jobsBoard";
 export default function Home() {
   return (
     <main>
-      <Heading>Dublin Startups</Heading>
+      <Heading p={8}>Dublin Startups</Heading>
       <JobsBoard />
     </main>
   );
