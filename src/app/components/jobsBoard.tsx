@@ -30,16 +30,23 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 export default function JobsBoard() {
   const [search, setSearch] = useState("");
 
+  const searchCompanies = COMPANIES.filter((company) =>
+    company.name.toLowerCase().includes(search.toLowerCase())
+  ).sort((a, b) => a.name.localeCompare(b.name));
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentCompanies = COMPANIES.slice(indexOfFirstItem, indexOfLastItem);
+  const currentCompanies = searchCompanies.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    var lowerCase = e.target.value.toLowerCase();
-    setSearch(lowerCase);
+    setSearch(e.target.value);
+    setCurrentPage(1);
   };
 
   const totalPages = Math.ceil(COMPANIES.length / itemsPerPage);
@@ -92,9 +99,6 @@ export default function JobsBoard() {
           </Thead>
           <Tbody>
             {currentCompanies
-              .filter((company) =>
-                company.name.toLowerCase().includes(search.toLowerCase())
-              )
               .sort((a, b) => a.name.localeCompare(b.name))
               .map((company) => (
                 <Tr key={company.name}>
