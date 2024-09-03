@@ -20,7 +20,7 @@ export default function Navbar() {
         fontSize="4xl"
         fontWeight="extrabold"
       >
-        <Link href="/"> Dublin Startup Ecosystem ☘️</Link>
+        <Link href="/"> Dublin Startup Ecosystem</Link>
       </Heading>
       <Flex alignItems="center" p={8}>
         <Text fontSize="xl" mr={6}>

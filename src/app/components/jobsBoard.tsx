@@ -29,27 +29,34 @@ import { categoryColor } from "../lib/utils";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 export default function JobsBoard() {
   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("All");
+  const itemsPerPage = 10;
 
   const searchCompanies = COMPANIES.filter((company) =>
     company.name.toLowerCase().includes(search.toLowerCase())
   ).sort((a, b) => a.name.localeCompare(b.name));
 
+  const filteredCompanies = COMPANIES.filter(
+    (company) =>
+      company.name.toLowerCase().includes(search.toLowerCase()) ||
+      filter === "All" ||
+      company.category === filter
+  ).sort((a, b) => a.name.localeCompare(b.name));
+
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentCompanies = searchCompanies.slice(
+  const currentCompanies = filteredCompanies.slice(
     indexOfFirstItem,
     indexOfLastItem
   );
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    setCurrentPage(1);
   };
 
-  const totalPages = Math.ceil(COMPANIES.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredCompanies.length / itemsPerPage);
 
   return (
     <Box>
@@ -65,13 +72,15 @@ export default function JobsBoard() {
           onChange={onChangeHandler}
         />
         <Select
-          p={2}
+          p={1}
           placeholder="Filter by industry"
           borderRadius="md"
           borderColor="white"
           maxWidth="600px"
+          onChange={(e) => setFilter(e.target.value)}
+          value={filter}
         >
-          <option value="all">All Industries</option>
+          <option value="All">All Industries</option>
           <option value="software">Software</option>
           <option value="hardware">Hardware</option>
           <option value="ai">AI</option>
@@ -155,7 +164,7 @@ export default function JobsBoard() {
                       colorScheme="blue"
                       size="sm"
                     >
-                      View jobs
+                      View
                     </Button>
                   </Td>
                 </Tr>

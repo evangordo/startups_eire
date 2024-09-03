@@ -113,7 +113,7 @@ export const COMPANIES = [
     jobs: "https://andopen.co/company/careers",
     linkedin: "https://www.linkedin.com/company/&open/",
     twitter: "https://x.com/andopen_",
-    location: "Dublin 6",
+    location: "Clares Ave,Dublin 6",
   },
   {
     name: "CliniShift",
@@ -243,7 +243,7 @@ export const COMPANIES = [
     jobs: "https://nory.ai/careers/",
   },
   {
-    name: "Spectrum Life",
+    name: "SpectrumLife",
     description:
       "Digital healthcare solution provider for insurers, employers and educators.",
     founded: "2018",
