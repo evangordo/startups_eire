@@ -1,7 +1,7 @@
 import { Box, Heading, VStack, SimpleGrid } from "@chakra-ui/react";
 
 import EventCard from "../components/eventCard";
-import { fetchDublinStartupEvents } from "../lib/data";
+import { fetchDublinStartupEvents } from "../lib/data/events";
 
 export default async function EventsPage() {
   const events = await fetchDublinStartupEvents();

@@ -20,7 +20,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
-import { STARTUPS } from "../data/startups";
+import { STARTUPS } from "../lib/data/startups";
 import Image from "next/image";
 import linkedin from "../assets/linkedin.png";
 import Link from "next/link";
@@ -37,7 +37,7 @@ export default function JobsBoard() {
     description: string;
     founded: string;
     category: string;
-    jobs?: string;
+    jobs: string;
     linkedin: string;
     twitter?: string;
     location: string;
@@ -45,7 +45,8 @@ export default function JobsBoard() {
   const filteredStartups = STARTUPS.filter(
     (startup: StartupProps) =>
       startup.name.toLowerCase().includes(search.toLowerCase()) &&
-      (filter === "All" || startup.category === filter)
+      (filter === "All" ||
+        startup.category.toLowerCase() === filter.toLowerCase())
   ).sort((a, b) => a.name.localeCompare(b.name));
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -78,7 +79,6 @@ export default function JobsBoard() {
         />
         <Select
           p={1}
-          placeholder="Filter by industry"
           borderRadius="md"
           borderColor="white"
           maxWidth="600px"
