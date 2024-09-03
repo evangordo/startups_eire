@@ -1,8 +1,10 @@
 "use client";
-import { Flex, Heading, Text, Button } from "@chakra-ui/react";
+import { Flex, Heading, Text, Button, Icon } from "@chakra-ui/react";
 import Image from "./image";
 import Link from "next/link";
-import github from "../assets/github.png";
+
+import { FaGithub } from "react-icons/fa";
+
 export default function Navbar() {
   return (
     <Flex
@@ -11,8 +13,14 @@ export default function Navbar() {
       alignItems="center"
       width="100%"
     >
-      <Heading p={8} color="blue.600">
-        Dublin Startup Ecosystem
+      <Heading
+        p={8}
+        bgGradient="linear(to-r, #00529F, #0095C8)"
+        bgClip="text"
+        fontSize="4xl"
+        fontWeight="extrabold"
+      >
+        <Link href="/"> Dublin Startup Ecosystem ☘️</Link>
       </Heading>
       <Flex alignItems="center" p={8}>
         <Text fontSize="xl" mr={6}>
@@ -34,10 +42,9 @@ export default function Navbar() {
           fontSize="xl"
           size="md"
           leftIcon={
-            <Image
+            <Icon
               p={2}
-              src={github}
-              alt="GitHub"
+              as={FaGithub}
               width={12}
               height={12}
               // objectFit="cover"

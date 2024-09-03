@@ -27,8 +27,9 @@ import Link from "next/link";
 import twitter from "../assets/twitter.png";
 import { categoryColor } from "../lib/utils";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-
 export default function JobsBoard() {
+  const [search, setSearch] = useState("");
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -36,7 +37,13 @@ export default function JobsBoard() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentCompanies = COMPANIES.slice(indexOfFirstItem, indexOfLastItem);
 
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    var lowerCase = e.target.value.toLowerCase();
+    setSearch(lowerCase);
+  };
+
   const totalPages = Math.ceil(COMPANIES.length / itemsPerPage);
+
   return (
     <Box>
       <Flex mb={4} gap={4} alignItems="center">
@@ -48,6 +55,7 @@ export default function JobsBoard() {
           borderRadius="md"
           borderColor="white"
           maxWidth="600px"
+          onChange={onChangeHandler}
         />
         <Select
           p={2}
@@ -84,6 +92,9 @@ export default function JobsBoard() {
           </Thead>
           <Tbody>
             {currentCompanies
+              .filter((company) =>
+                company.name.toLowerCase().includes(search.toLowerCase())
+              )
               .sort((a, b) => a.name.localeCompare(b.name))
               .map((company) => (
                 <Tr key={company.name}>
@@ -148,7 +159,7 @@ export default function JobsBoard() {
           </Tbody>
         </Table>
       </TableContainer>
-      <Flex justifyContent="center" mt={4}>
+      <Flex justifyContent="center" m={6}>
         <ButtonGroup>
           <Button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}

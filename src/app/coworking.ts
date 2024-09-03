@@ -7,13 +7,13 @@ export const COWORKING = [
   },
   {
     name: "Dogpatch Labs",
-    address: "The CHQ Building, Custom House Quay, Dublin 1",
+    address: "The CHQ Building, Dublin 1",
     image: "/logos/dogpatch.png",
     link: "https://dogpatchlabs.com/",
   },
   {
-    name: "The Guinness Enterprise Centre (GEC)",
-    address: "Lána an Táilliúraigh, Dublin",
+    name: "The Guinness Enterprise Centre",
+    address: "The Liberties, Dublin 8",
     image: "/logos/gec.png",
     link: "https://gec.ie/",
   },
