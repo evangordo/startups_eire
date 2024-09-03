@@ -12,14 +12,20 @@ export default function Navbar() {
       width="100%"
     >
       <Heading p={8} color="blue.600">
-        Dublin Startups Job Hub
+        Dublin Startup Ecosystem
       </Heading>
       <Flex alignItems="center" p={8}>
         <Text fontSize="xl" mr={6}>
           <Link href="/">Jobs</Link>
         </Text>
         <Text fontSize="xl" mr={6}>
-          <Link href="/coworkingspaces">Co-working Spaces</Link>
+          <Link href="/events">Events</Link>
+        </Text>
+        <Text fontSize="xl" mr={6}>
+          <Link href="/hackathons">Hackathons</Link>
+        </Text>
+        <Text fontSize="xl" mr={6}>
+          <Link href="/coworkingspaces">Co-working</Link>
         </Text>
         <Button
           as={Link}
@@ -34,11 +40,11 @@ export default function Navbar() {
               alt="GitHub"
               width={12}
               height={12}
-              objectFit="contain"
+              // objectFit="cover"
             />
           }
         >
-          Contribute
+          <Text mr={4}>Contribute</Text>
         </Button>
       </Flex>
     </Flex>
