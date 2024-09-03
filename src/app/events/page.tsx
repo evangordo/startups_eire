@@ -1,9 +1,10 @@
 import { Box, Heading, VStack, SimpleGrid } from "@chakra-ui/react";
 
 import EventCard from "../components/eventCard";
+import { fetchDublinStartupEvents } from "../lib/data";
 
 export default async function EventsPage() {
-  //   const events = await fetchDublinStartupEvents();
+  const events = await fetchDublinStartupEvents();
 
   return (
     <Box maxWidth="1200px" margin="auto" padding={8}>
