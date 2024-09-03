@@ -20,7 +20,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
-import { COMPANIES } from "../companies";
+import { STARTUPS } from "../data/startups";
 import Image from "next/image";
 import linkedin from "../assets/linkedin.png";
 import Link from "next/link";
@@ -32,22 +32,27 @@ export default function JobsBoard() {
   const [filter, setFilter] = useState("All");
   const itemsPerPage = 10;
 
-  const searchCompanies = COMPANIES.filter((company) =>
-    company.name.toLowerCase().includes(search.toLowerCase())
-  ).sort((a, b) => a.name.localeCompare(b.name));
-
-  const filteredCompanies = COMPANIES.filter(
-    (company) =>
-      company.name.toLowerCase().includes(search.toLowerCase()) ||
-      filter === "All" ||
-      company.category === filter
+  interface StartupProps {
+    name: string;
+    description: string;
+    founded: string;
+    category: string;
+    jobs?: string;
+    linkedin: string;
+    twitter?: string;
+    location: string;
+  }
+  const filteredStartups = STARTUPS.filter(
+    (startup: StartupProps) =>
+      startup.name.toLowerCase().includes(search.toLowerCase()) &&
+      (filter === "All" || startup.category === filter)
   ).sort((a, b) => a.name.localeCompare(b.name));
 
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentCompanies = filteredCompanies.slice(
+  const currentStartups = filteredStartups.slice(
     indexOfFirstItem,
     indexOfLastItem
   );
@@ -56,7 +61,7 @@ export default function JobsBoard() {
     setSearch(e.target.value);
   };
 
-  const totalPages = Math.ceil(filteredCompanies.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredStartups.length / itemsPerPage);
 
   return (
     <Box>
@@ -65,7 +70,7 @@ export default function JobsBoard() {
           flex={1}
           ml={8}
           p={2}
-          placeholder="Search by company name"
+          placeholder="Search by startup name"
           borderRadius="md"
           borderColor="white"
           maxWidth="600px"
@@ -97,7 +102,7 @@ export default function JobsBoard() {
           <TableCaption>Jobs board for Startups based in Dublin</TableCaption>
           <Thead>
             <Tr>
-              <Th>Company</Th>
+              <Th>startup</Th>
               <Th>Description</Th>
               <Th>Founded</Th>
               <Th>Category</Th>
@@ -107,18 +112,20 @@ export default function JobsBoard() {
             </Tr>
           </Thead>
           <Tbody>
-            {currentCompanies
-              .sort((a, b) => a.name.localeCompare(b.name))
-              .map((company) => (
-                <Tr key={company.name}>
+            {currentStartups
+              .sort((a: StartupProps, b: StartupProps) =>
+                a.name.localeCompare(b.name)
+              )
+              .map((startup: StartupProps) => (
+                <Tr key={startup.name}>
                   <Td>
                     <Flex align="center">
                       <Avatar
-                        src={`/logos/${company.name}.png`}
-                        name={company.name}
+                        src={`/logos/${startup.name}.png`}
+                        name={startup.name}
                       />
                       <Box ml={2} color="white">
-                        {company.name}
+                        {startup.name}
                       </Box>
                     </Flex>
                   </Td>
@@ -126,18 +133,18 @@ export default function JobsBoard() {
                   <Td>
                     {" "}
                     <Box maxWidth="600px" whiteSpace="normal">
-                      {company.description}
+                      {startup.description}
                     </Box>
                   </Td>
-                  <Td>{company.founded}</Td>
+                  <Td>{startup.founded}</Td>
                   <Td>
-                    <Badge colorScheme={categoryColor(company.category)}>
-                      {company.category}
+                    <Badge colorScheme={categoryColor(startup.category)}>
+                      {startup.category}
                     </Badge>
                   </Td>
                   <Td>
                     <HStack spacing={2}>
-                      <Link href={company.linkedin}>
+                      <Link href={startup.linkedin}>
                         <Image
                           src={linkedin}
                           alt="linkedin"
@@ -145,7 +152,7 @@ export default function JobsBoard() {
                           height={28}
                         />
                       </Link>
-                      <Link href={company.twitter ?? "#"}>
+                      <Link href={startup.twitter ?? "#"}>
                         <Image
                           src={twitter}
                           alt="twitter"
@@ -155,11 +162,11 @@ export default function JobsBoard() {
                       </Link>
                     </HStack>
                   </Td>
-                  <Td>{company.location}</Td>
+                  <Td>{startup.location}</Td>
                   <Td>
                     <Button
                       as={Link}
-                      href={company.jobs ?? ""}
+                      href={startup.jobs ?? ""}
                       rightIcon={<ExternalLinkIcon />}
                       colorScheme="blue"
                       size="sm"

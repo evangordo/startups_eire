@@ -10,7 +10,7 @@
 // - EdTech
 // - Other
 
-export const COMPANIES = [
+export const STARTUPS = [
   {
     name: "Kota",
     description:
@@ -122,6 +122,8 @@ export const COMPANIES = [
     category: "HealthTech",
     linkedin: "https://www.linkedin.com/company/clinishift/",
     location: "The Greenway Hub, Dublin 7",
+    jobs: "https://clinishift.com/careers",
+    twitter: "https://x.com/clinishift?lang=en",
   },
   {
     name: "LearnUpon",

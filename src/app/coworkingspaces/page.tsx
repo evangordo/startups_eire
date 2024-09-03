@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 
-import { COWORKING } from "../coworking";
+import { COWORKING } from "../data/coworking";
 export default function CoworkingSpaces() {
   return (
     <Box maxWidth="1200px" margin="auto" padding={8}>
