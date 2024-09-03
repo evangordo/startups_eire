@@ -67,17 +67,7 @@ export const COMPANIES = [
     linkedin: "https://www.linkedin.com/company/cubic-telecom/",
     twitter: "https://twitter.com/cubictelecom",
   },
-  {
-    name: "BrowserStack",
-    description:
-      "The most reliable web and mobile app testing platform on the market.",
-    founded: "2011",
-    linkedin: "https://www.linkedin.com/company/browserstack/",
-    location: "North Dock, Dublin 1",
-    category: "SaaS",
-    jobs: "https://www.browserstack.com/careers",
-    twitter: "https://x.com/browserstack",
-  },
+
   {
     name: "KitmanLabs",
     founded: "2012",
