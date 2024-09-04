@@ -267,17 +267,7 @@ export const STARTUPS = [
     twitter: "https://twitter.com/SpectrumLifeHQ",
     location: "Merrion Square, Dublin 2",
   },
-  {
-    name: "EdgeTier",
-    description:
-      "Real-time AI analytics platform that helps customer contact centres improve their service.",
-    founded: "2015",
-    category: "AI",
-    jobs: "https://www.edgetier.com/careers",
-    linkedin: "https://www.linkedin.com/company/edgetier/",
-    twitter: "https://twitter.com/EdgeTier",
-    location: "Westland Sqaure, Dublin 2",
-  },
+
   {
     name: "Roadie",
     description: "Provider of Backstage as a service for developer platforms.",
