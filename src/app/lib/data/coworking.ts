@@ -36,7 +36,7 @@ export const COWORKING = [
     link: "https://iconicoffices.com/",
   },
   {
-    name: "CoCreate North",
+    name: "CoCreate North & South",
     address: "43 O'Connell Street Upper, Dublin",
     image: "/logos/cocreate.png",
     link: "https://cocreate.ie/",
@@ -54,11 +54,12 @@ export const COWORKING = [
     link: "https://www.fumballyexchange.com/",
   },
   {
-    name: "CoCreate South",
-    address: "Dublin 2",
-    image: "/logos/cocreate.png",
-    link: "https://cocreate.ie/",
+    name: "WeWork",
+    address: "Harcourt Road, Dublin 2",
+    image: "/logos/wework.png",
+    link: "https://www.wework.com/",
   },
+
   {
     name: "tcube coworking",
     address: "1 O'Connell Street Lower, Dublin",

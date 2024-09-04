@@ -169,6 +169,18 @@ export const STARTUPS = [
     category: "Gaming",
   },
   {
+    name: "EdgeTier",
+    jobs: "https://www.edgetier.com/company/jobs/",
+    linkedin: "https://www.linkedin.com/company/edgetier/",
+    twitter: "https://x.com/teamedgetier",
+    location: "Dublin 2",
+    founded: "2015",
+    category: "AI",
+    description:
+      "Real-time AI analytics platform that helps customer contact centres improve their service.",
+  },
+
+  {
     name: "EverCam",
     description:
       "Evercam records every second of your construction project and unifies fixed-position cameras, in one central location.",

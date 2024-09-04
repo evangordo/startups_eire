@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   Heading,
@@ -10,6 +11,7 @@ import {
 import Link from "next/link";
 
 import { COWORKING } from "../lib/data/coworking";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 export default function CoworkingSpaces() {
   return (
     <Box maxWidth="1200px" margin="auto" padding={8}>
@@ -24,6 +26,8 @@ export default function CoworkingSpaces() {
             borderRadius="lg"
             overflow="hidden"
             boxShadow="md"
+            display="flex"
+            flexDirection="column"
           >
             <Link href={space.link} target="_blank" rel="noopener noreferrer">
               <Image
@@ -31,19 +35,28 @@ export default function CoworkingSpaces() {
                 alt={space.name}
                 height={200}
                 width="100%"
-                objectFit="contain"
-                p={4}
+                objectFit="cover"
               />
+
+              <VStack
+                align="stretch"
+                p={4}
+                flex={1}
+                justifyContent="space-between"
+              >
+                <Box>
+                  <Heading as="h3" size="md" mb={2}>
+                    {space.name}
+                  </Heading>
+                  <Text fontSize="sm" color="gray.600" noOfLines={2}>
+                    {space.address}
+                  </Text>
+                </Box>
+                <Text fontSize="sm" color="blue.500" mt={4} mb={2} px={2}>
+                  Visit <ExternalLinkIcon mb={1} />
+                </Text>
+              </VStack>
             </Link>
-            <Divider />
-            <VStack align="start" p={4}>
-              <Heading as="h3" size="lg">
-                {space.name}
-              </Heading>
-              <Box p={2} borderRadius="md">
-                <Text noOfLines={1}>{space.address}</Text>
-              </Box>
-            </VStack>
           </Box>
         ))}
       </SimpleGrid>
