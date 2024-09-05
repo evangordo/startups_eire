@@ -1,5 +1,6 @@
 "use client";
-import { Flex, Heading, Text, Button, Icon } from "@chakra-ui/react";
+import { Flex, Heading, Text, Button, Icon, Box } from "@chakra-ui/react";
+import { Arrow } from "./arrow";
 import Image from "./image";
 import Link from "next/link";
 
@@ -41,18 +42,23 @@ export default function Navbar() {
           colorScheme="blue"
           fontSize="xl"
           size="md"
-          leftIcon={
-            <Icon
-              p={2}
-              as={FaGithub}
-              width={12}
-              height={12}
-              // objectFit="cover"
-            />
-          }
+          leftIcon={<Icon p={2} as={FaGithub} width={12} height={12} />}
         >
           <Text mr={4}>Contribute</Text>
         </Button>
+        <Box position={"relative"}>
+          <Icon
+            as={Arrow}
+            color={"white"}
+            w={77}
+            position={"absolute"}
+            right={68}
+            bottom={"-20px"}
+          />
+          <Text fontSize={"lg"} ml={9} transform={"rotate(20deg)"}>
+            Add a Startup
+          </Text>
+        </Box>
       </Flex>
     </Flex>
   );

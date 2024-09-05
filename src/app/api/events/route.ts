@@ -1,26 +1,12 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const response = await fetch(
-      "https://www.eventbriteapi.com/v3/events/search/?q=startup&location.address=dublin&token=${EVENTBRITE_TOKEN}",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch  data");
-    }
-
-    const data = await response.json();
-    return NextResponse.json(data);
+    return NextResponse.json({});
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error ", error);
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: "Failed to fetch events", details: error },
       { status: 500 }
     );
   }

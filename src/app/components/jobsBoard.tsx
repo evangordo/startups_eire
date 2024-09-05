@@ -18,6 +18,8 @@ import {
   Badge,
   ButtonGroup,
   Text,
+  Icon,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
 import { STARTUPS } from "../lib/data/startups";
@@ -27,6 +29,8 @@ import Link from "next/link";
 import twitter from "../assets/twitter.png";
 import { categoryColor } from "../lib/utils";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { Arrow } from "./arrow";
+
 export default function JobsBoard() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
