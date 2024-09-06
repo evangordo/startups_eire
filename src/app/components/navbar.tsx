@@ -38,7 +38,7 @@ export default function Navbar() {
         </Text>
         <Button
           as={Link}
-          href="https://github.com/startupsie/startupsie"
+          href="/uploadstartup"
           colorScheme="blue"
           fontSize="xl"
           size="md"

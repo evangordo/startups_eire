@@ -47,7 +47,7 @@ const StartupForm = () => {
   };
 
   return (
-    <Box maxWidth="md" margin="auto" mt={8}>
+    <Box maxWidth="md" bg="red" borderRadius="lg" margin="auto" mt={8}>
       <form onSubmit={handleSubmit}>
         <VStack spacing={4}>
           <FormControl isRequired>
