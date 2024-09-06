@@ -98,6 +98,8 @@ export default function JobsBoard() {
           <option value="fintech">FinTech</option>
           <option value="healthtech">HealthTech</option>
           <option value="edtech">EdTech</option>
+          <option value="security">Security</option>
+          <option value="crypto">Crypto</option>
           <option value="other">Other</option>
         </Select>
       </Flex>

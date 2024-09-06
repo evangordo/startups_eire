@@ -47,22 +47,40 @@ const StartupForm = () => {
   };
 
   return (
-    <Box maxWidth="md" bg="red" borderRadius="lg" margin="auto" mt={8}>
+    <Box
+      maxWidth="lg"
+      bg="#f4f5ee"
+      borderRadius="lg"
+      margin="auto"
+      mt={20}
+      p={6}
+    >
       <form onSubmit={handleSubmit}>
         <VStack spacing={4}>
           <FormControl isRequired>
-            <FormLabel htmlFor="companyName">Company Name</FormLabel>
+            <FormLabel color="black" htmlFor="companyName" p={4} fontSize="xl">
+              Company Name
+            </FormLabel>
             <Input
+              bg={"black"}
               id="companyName"
               name="companyName"
+              color="black"
               value={formData.companyName}
               onChange={handleChange}
+              px={8}
+              py={2}
+              borderRadius="lg"
             />
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel htmlFor="logoUrl">Startup Logo URL</FormLabel>
+            <FormLabel color="black" htmlFor="logoUrl" p={4} fontSize="xl">
+              Startup Logo URL
+            </FormLabel>
             <Input
+              bg={"black"}
+              color="white"
               id="logoUrl"
               name="logoUrl"
               type="url"
@@ -72,8 +90,12 @@ const StartupForm = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel htmlFor="jobsUrl">Jobs URL</FormLabel>
+            <FormLabel color="black" htmlFor="jobsUrl" p={4} fontSize="xl">
+              Jobs URL
+            </FormLabel>
             <Input
+              bg={"black"}
+              color="white"
               id="jobsUrl"
               name="jobsUrl"
               type="url"
@@ -83,8 +105,12 @@ const StartupForm = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel htmlFor="location">Location</FormLabel>
+            <FormLabel color="black" htmlFor="location" p={4} fontSize="xl">
+              Location
+            </FormLabel>
             <Input
+              bg={"black"}
+              color="white"
               id="location"
               name="location"
               value={formData.location}
@@ -93,8 +119,12 @@ const StartupForm = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel htmlFor="category">Category</FormLabel>
+            <FormLabel color="black" htmlFor="category" p={4} fontSize="xl">
+              Category
+            </FormLabel>
             <Select
+              bg={"black"}
+              color="white"
               id="category"
               name="category"
               value={formData.category}
@@ -110,8 +140,13 @@ const StartupForm = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel htmlFor="founded">Founded Year</FormLabel>
+            <FormLabel color="black" htmlFor="founded" p={4} fontSize="xl">
+              Founded Year
+            </FormLabel>
             <Input
+              p={4}
+              bg={"black"}
+              color="white"
               id="founded"
               name="founded"
               type="number"
