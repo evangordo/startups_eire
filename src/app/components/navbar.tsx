@@ -1,18 +1,30 @@
 "use client";
-import { Flex, Heading, Text, Button, Icon, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Text,
+  Button,
+  Icon,
+  Box,
+  useColorMode,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { Arrow } from "./arrow";
 import Image from "./image";
 import Link from "next/link";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 import { FaGithub } from "react-icons/fa";
 
 export default function Navbar() {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Flex
       justifyContent="space-between"
       flexDirection="row"
       alignItems="center"
       width="100%"
+      gap={6}
     >
       <Heading
         p={8}
@@ -36,18 +48,26 @@ export default function Navbar() {
         <Text fontSize="xl" mr={6}>
           <Link href="/coworkingspaces">Co-working</Link>
         </Text>
+
         <Button
+          mr={6}
           as={Link}
           href="/uploadstartup"
           colorScheme="blue"
           fontSize="xl"
           size="md"
-          leftIcon={<Icon p={2} as={FaGithub} width={12} height={12} />}
         >
-          <Text mr={4}>Contribute</Text>
+          <Text>Contribute</Text>
         </Button>
-        <Box position={"relative"}>
-          <Icon
+
+        {/* <Box mr={6}> */}
+        <Button onClick={toggleColorMode} variant="ghost" mr={6} size="md">
+          {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+        </Button>
+        {/* </Box> */}
+
+        {/* <Box position={"relative"}> */}
+        {/* <Icon
             as={Arrow}
             color={"white"}
             w={77}
@@ -57,8 +77,8 @@ export default function Navbar() {
           />
           <Text fontSize={"lg"} ml={9} transform={"rotate(20deg)"}>
             Add a Startup
-          </Text>
-        </Box>
+          </Text> */}
+        {/* </Box> */}
       </Flex>
     </Flex>
   );
