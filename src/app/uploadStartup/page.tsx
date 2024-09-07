@@ -9,7 +9,23 @@ import {
   VStack,
   Select,
   useToast,
+  Flex,
+  Stack,
+  Heading,
+  Text,
+  Container,
+  SimpleGrid,
+  Avatar,
+  AvatarGroup,
+  useBreakpointValue,
+  Icon,
 } from "@chakra-ui/react";
+
+const STARTUP_LOGOS = [
+  { name: "Startup 1", url: "https://via.placeholder.com/150" },
+  { name: "Startup 2", url: "https://via.placeholder.com/150" },
+  { name: "Startup 3", url: "https://via.placeholder.com/150" },
+];
 
 const StartupForm = () => {
   const [formData, setFormData] = useState({
@@ -23,145 +39,244 @@ const StartupForm = () => {
 
   const toast = useToast();
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission here (e.g., send data to API)
-    console.log("Form submitted:", formData);
-    toast({
-      title: "Startup submitted.",
-      description: "We've received your startup information.",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-    });
-  };
-
   return (
-    <Box
-      maxWidth="lg"
-      bg="#f4f5ee"
-      borderRadius="lg"
-      margin="auto"
-      mt={20}
-      p={6}
-    >
-      <form onSubmit={handleSubmit}>
-        <VStack spacing={4}>
-          <FormControl isRequired>
-            <FormLabel color="black" htmlFor="companyName" p={4} fontSize="xl">
-              Company Name
-            </FormLabel>
-            <Input
-              bg={"black"}
-              id="companyName"
-              name="companyName"
-              color="black"
-              value={formData.companyName}
-              onChange={handleChange}
-              px={8}
-              py={2}
-              borderRadius="lg"
-            />
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel color="black" htmlFor="logoUrl" p={4} fontSize="xl">
-              Startup Logo URL
-            </FormLabel>
-            <Input
-              bg={"black"}
-              color="white"
-              id="logoUrl"
-              name="logoUrl"
-              type="url"
-              value={formData.logoUrl}
-              onChange={handleChange}
-            />
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel color="black" htmlFor="jobsUrl" p={4} fontSize="xl">
-              Jobs URL
-            </FormLabel>
-            <Input
-              bg={"black"}
-              color="white"
-              id="jobsUrl"
-              name="jobsUrl"
-              type="url"
-              value={formData.jobsUrl}
-              onChange={handleChange}
-            />
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel color="black" htmlFor="location" p={4} fontSize="xl">
-              Location
-            </FormLabel>
-            <Input
-              bg={"black"}
-              color="white"
-              id="location"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-            />
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel color="black" htmlFor="category" p={4} fontSize="xl">
-              Category
-            </FormLabel>
-            <Select
-              bg={"black"}
-              color="white"
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              placeholder="Select category"
+    <Box position={"relative"}>
+      <Container
+        as={SimpleGrid}
+        maxW={"7xl"}
+        columns={{ base: 1, md: 2 }}
+        spacing={{ base: 10, lg: 32 }}
+        py={{ base: 10, sm: 20, lg: 32 }}
+      >
+        <Stack spacing={{ base: 10, md: 20 }}>
+          <Heading
+            lineHeight={1.1}
+            fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
+          >
+            Join Dublin's{" "}
+            <Text
+              as={"span"}
+              position={"relative"}
+              _after={{
+                content: "''",
+                width: "full",
+                height: "20%",
+                position: "absolute",
+                bottom: 1,
+                left: 0,
+                bg: "blue.400",
+                zIndex: -1,
+              }}
             >
-              <option value="fintech">Fintech</option>
-              <option value="healthtech">Healthtech</option>
-              <option value="edtech">Edtech</option>
-              <option value="ecommerce">E-commerce</option>
-              <option value="other">Other</option>
-            </Select>
-          </FormControl>
+              Startup
+            </Text>{" "}
+            Ecosystem
+          </Heading>
+          <Stack direction={"row"} spacing={4} align={"center"}>
+            <AvatarGroup>
+              {STARTUP_LOGOS.map((avatar) => (
+                <Avatar
+                  key={avatar.name}
+                  name={avatar.name}
+                  src={avatar.url}
+                  size={useBreakpointValue({ base: "md", md: "lg" })}
+                  position={"relative"}
+                  zIndex={2}
+                  _before={{
+                    content: '""',
+                    width: "full",
+                    height: "full",
+                    rounded: "full",
+                    transform: "scale(1.125)",
+                    bgGradient: "linear(to-r, #00529F, #0095C8)",
+                    position: "absolute",
+                    zIndex: -1,
+                    top: 0,
+                    left: 0,
+                  }}
+                />
+              ))}
+            </AvatarGroup>
+            <Text fontFamily={"heading"} fontSize={{ base: "4xl", md: "6xl" }}>
+              +
+            </Text>
+            <Flex
+              align={"center"}
+              justify={"center"}
+              fontFamily={"heading"}
+              fontSize={{ base: "sm", md: "lg" }}
+              bg={"gray.800"}
+              color={"white"}
+              rounded={"full"}
+              minWidth={useBreakpointValue({ base: "44px", md: "60px" })}
+              minHeight={useBreakpointValue({ base: "44px", md: "60px" })}
+              position={"relative"}
+              _before={{
+                content: '""',
+                width: "full",
+                height: "full",
+                rounded: "full",
+                transform: "scale(1.125)",
+                bgGradient: "linear(to-bl, orange.400,yellow.400)",
+                position: "absolute",
+                zIndex: -1,
+                top: 0,
+                left: 0,
+              }}
+            >
+              YOU
+            </Flex>
+          </Stack>
+        </Stack>
 
-          <FormControl isRequired>
-            <FormLabel color="black" htmlFor="founded" p={4} fontSize="xl">
-              Founded Year
-            </FormLabel>
-            <Input
-              p={4}
-              bg={"black"}
-              color="white"
-              id="founded"
-              name="founded"
-              type="number"
-              value={formData.founded}
-              onChange={handleChange}
-              min="1900"
-              max={new Date().getFullYear()}
-            />
-          </FormControl>
+        <Box
+          bg={"gray.50"}
+          rounded={"xl"}
+          p={{ base: 4, sm: 6, md: 8 }}
+          maxW={{ lg: "lg" }}
+        >
+          <Heading
+            color={"gray.800"}
+            lineHeight={1.2}
+            fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
+            mb={6}
+          >
+            Submit Your Startup
+          </Heading>
+          <form
+          // onSubmit={handleSubmit}
+          >
+            <VStack spacing={10} align="stretch">
+              <SimpleGrid columns={2} spacing={5}>
+                <FormControl isRequired>
+                  <FormLabel color="black" htmlFor="companyName" fontSize="md">
+                    Company Name
+                  </FormLabel>
+                  <Input
+                    borderWidth="1px"
+                    borderColor="gray.300"
+                    bg="white"
+                    color="black"
+                    name="companyName"
+                    value={formData.companyName}
+                    // onChange={handleChange}
+                  />
+                </FormControl>
 
-          <Button type="submit" colorScheme="blue" width="full">
-            Submit Startup
-          </Button>
-        </VStack>
-      </form>
+                <FormControl isRequired>
+                  <FormLabel color="black" htmlFor="logoUrl" fontSize="md">
+                    Logo URL
+                  </FormLabel>
+                  <Input
+                    borderWidth="1px"
+                    borderColor="gray.300"
+                    borderRadius="md"
+                    bg="white"
+                    color="black"
+                    name="logoUrl"
+                    type="url"
+                    value={formData.logoUrl}
+                    // onChange={handleChange}
+                  />
+                </FormControl>
+              </SimpleGrid>
+
+              <SimpleGrid columns={2} spacing={3}>
+                <FormControl isRequired>
+                  <FormLabel color="black" htmlFor="jobsUrl" fontSize="sm">
+                    Jobs URL
+                  </FormLabel>
+                  <Input
+                    color="black"
+                    borderWidth="1px"
+                    borderColor="gray.300"
+                    borderRadius="md"
+                    bg="white"
+                    name="logoUrl"
+                    type="url"
+                    value={formData.jobsUrl}
+                    // onChange={handleChange}
+                  />
+                </FormControl>
+
+                <FormControl isRequired>
+                  <FormLabel color="black" htmlFor="location" fontSize="sm">
+                    Location
+                  </FormLabel>
+                  <Input
+                    color="black"
+                    borderWidth="1px"
+                    borderColor="gray.300"
+                    borderRadius="md"
+                    bg="white"
+                    type="url"
+                    name="location"
+                    value={formData.location}
+                    // onChange={handleChange}
+                  />
+                </FormControl>
+              </SimpleGrid>
+
+              <SimpleGrid columns={2} spacing={3}>
+                <FormControl isRequired>
+                  <FormLabel color="black" htmlFor="category" fontSize="sm">
+                    Category
+                  </FormLabel>
+                  <Select
+                    color="black"
+                    borderWidth="1px"
+                    borderColor="gray.300"
+                    borderRadius="md"
+                    bg="white"
+                    name="category"
+                    type="url"
+                    value={formData.category}
+                    // onChange={handleChange}
+                    placeholder="Select category"
+                  >
+                    <option value="fintech">Fintech</option>
+                    <option value="healthtech">Healthtech</option>
+                    <option value="edtech">Edtech</option>
+                    <option value="ecommerce">E-commerce</option>
+                    <option value="other">Other</option>
+                  </Select>
+                </FormControl>
+
+                <FormControl isRequired>
+                  <FormLabel color="black" htmlFor="founded" fontSize="sm">
+                    Founded Year
+                  </FormLabel>
+                  <Input
+                    color="black"
+                    borderColor="gray.300"
+                    borderWidth="1px"
+                    borderRadius="md"
+                    bg="white"
+                    name="founded"
+                    type="number"
+                    value={formData.founded}
+                    // onChange={handleChange}
+                    min="1900"
+                    max={new Date().getFullYear()}
+                  />
+                </FormControl>
+              </SimpleGrid>
+
+              <Button
+                type="submit"
+                colorScheme="blue"
+                size="lg" // Increased button size
+                width="full"
+                mt={4}
+                py={6} // Increased button padding
+                fontSize="xl" // Increased button font size
+              >
+                Submit Startup
+              </Button>
+            </VStack>
+          </form>
+        </Box>
+      </Container>
     </Box>
   );
 };
