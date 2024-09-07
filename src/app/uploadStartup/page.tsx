@@ -35,6 +35,8 @@ const StartupForm = () => {
     location: "",
     category: "",
     founded: "",
+    twitter: "",
+    linkedin: "",
   });
 
   const toast = useToast();
@@ -258,6 +260,42 @@ const StartupForm = () => {
                     // onChange={handleChange}
                     min="1900"
                     max={new Date().getFullYear()}
+                  />
+                </FormControl>
+              </SimpleGrid>
+
+              <SimpleGrid columns={2} spacing={3}>
+                <FormControl isRequired>
+                  <FormLabel color="black" htmlFor="twitter" fontSize="sm">
+                    Twitter
+                  </FormLabel>
+                  <Input
+                    color="black"
+                    borderColor="gray.300"
+                    borderWidth="1px"
+                    borderRadius="md"
+                    bg="white"
+                    name="twitter"
+                    type="url"
+                    value={formData.twitter}
+                    // onChange={handleChange}
+                  />
+                </FormControl>
+
+                <FormControl isRequired>
+                  <FormLabel color="black" htmlFor="linkedin" fontSize="sm">
+                    LinkedIn
+                  </FormLabel>
+                  <Input
+                    color="black"
+                    borderColor="gray.300"
+                    borderWidth="1px"
+                    borderRadius="md"
+                    bg="white"
+                    name="linkedin"
+                    type="url"
+                    value={formData.linkedin}
+                    // onChange={handleChange}
                   />
                 </FormControl>
               </SimpleGrid>
