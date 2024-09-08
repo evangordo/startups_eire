@@ -76,7 +76,7 @@ export default function JobsBoard() {
           flex={1}
           ml={8}
           p={2}
-          placeholder="Search by startup name"
+          placeholder="Search  startup "
           borderRadius="md"
           borderColor={colorMode === "dark" ? "white" : "black"}
           maxWidth="600px"

@@ -1,5 +1,8 @@
-import { Box, Text, Link } from "@chakra-ui/react";
+"use client";
 
+import { Box, Text, Link, Flex, Icon } from "@chakra-ui/react";
+
+import { FaGithub } from "react-icons/fa6";
 export default function Footer() {
   return (
     <Box as="footer" py={4} textAlign="center" bg="gray.100">
@@ -8,6 +11,7 @@ export default function Footer() {
         <Link href="https://github.com" color="blue.500" isExternal>
           Dublin startup ecosystem
         </Link>
+        <Icon as={FaGithub} color="black" />
       </Text>
     </Box>
   );
