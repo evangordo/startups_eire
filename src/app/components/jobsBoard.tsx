@@ -19,7 +19,7 @@ import {
   ButtonGroup,
   Text,
   Icon,
-  useColorModeValue,
+  useColorMode,
 } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
 import { STARTUPS } from "../lib/data/startups";
@@ -32,6 +32,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Arrow } from "./arrow";
 
 export default function JobsBoard() {
+  const { colorMode } = useColorMode();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
   const itemsPerPage = 10;
@@ -77,14 +78,14 @@ export default function JobsBoard() {
           p={2}
           placeholder="Search by startup name"
           borderRadius="md"
-          borderColor="white"
+          borderColor={colorMode === "dark" ? "white" : "black"}
           maxWidth="600px"
           onChange={onChangeHandler}
         />
         <Select
           p={1}
           borderRadius="md"
-          borderColor="white"
+          borderColor={colorMode === "dark" ? "white" : "black"}
           maxWidth="600px"
           onChange={(e) => setFilter(e.target.value)}
           value={filter}
