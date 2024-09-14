@@ -22,11 +22,10 @@ import {
 } from "@chakra-ui/react";
 
 const STARTUP_LOGOS = [
-  { name: "Startup 1", url: "https://via.placeholder.com/150" },
-  { name: "Startup 2", url: "https://via.placeholder.com/150" },
-  { name: "Startup 3", url: "https://via.placeholder.com/150" },
+  { name: "Startup 1", url: "logos/edgetier.png" },
+  { name: "Startup 2", url: "logos/wayflyer.png" },
+  { name: "Startup 3", url: "logos/nory.png" },
 ];
-
 const StartupForm = () => {
   const [formData, setFormData] = useState({
     companyName: "",
@@ -126,7 +125,7 @@ const StartupForm = () => {
                 left: 0,
               }}
             >
-              YOU
+              Yours
             </Flex>
           </Stack>
         </Stack>

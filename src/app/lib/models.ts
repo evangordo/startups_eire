@@ -53,3 +53,36 @@ const startupSchema = new mongoose.Schema(
 );
 export const Startup =
   mongoose.models?.Startup || mongoose.model("Startup", startupSchema);
+
+const eventSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      unique: true,
+      minlength: 3,
+      maxlength: 20,
+    },
+    description: {
+      type: String,
+      required: true,
+      unique: true,
+      minlength: 3,
+      maxlength: 20,
+    },
+    date: {
+      type: Date,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+      unique: true,
+      maxlength: 50,
+    },
+  },
+  { timestamps: true }
+);
+
+export const Events =
+  mongoose.models?.Event || mongoose.model("Event", eventSchema);

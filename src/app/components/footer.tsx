@@ -6,13 +6,12 @@ import { FaGithub } from "react-icons/fa6";
 export default function Footer() {
   return (
     <Box as="footer" py={4} textAlign="center" bg="gray.100">
-      <Text fontSize="sm" color="gray.600">
-        Open source project - Help to grow the{" "}
+      <Flex justifyContent="center" alignItems="center">
         <Link href="https://github.com" color="blue.500" isExternal>
           Dublin startup ecosystem
         </Link>
-        <Icon as={FaGithub} color="black" />
-      </Text>
+        <Icon mx={2} as={FaGithub} color="black" />
+      </Flex>
     </Box>
   );
 }
