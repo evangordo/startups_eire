@@ -1,7 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { Startup } from "./models";
+import { Startup, Events } from "./models";
 import { connectToDb } from "./utils";
 
 // import { Resend } from "resend";
@@ -32,8 +32,35 @@ export const submitStartup = async (formData: FormData) => {
 
     revalidatePath("/");
     redirect("/");
+
+    return { success: true };
   } catch (error) {
     console.log(error);
     throw new Error("Failed to submit startup");
+  }
+};
+
+export const submitEvent = async (formData: FormData) => {
+  const name = formData.get("eventName");
+  const description = formData.get("eventDescription");
+  const date = formData.get("eventDate");
+  const url = formData.get("eventUrl");
+
+  try {
+    connectToDb();
+    const event = await Events.create({
+      name,
+      description,
+      date,
+      url,
+    });
+
+    revalidatePath("/");
+    redirect("/");
+
+    return { success: true };
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to submit event");
   }
 };
