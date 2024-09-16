@@ -1,20 +1,8 @@
 "use client";
-import {
-  Flex,
-  Heading,
-  Text,
-  Button,
-  Icon,
-  Box,
-  useColorMode,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { Arrow } from "./arrow";
-import Image from "./image";
+import { Flex, Heading, Text, Button, useColorMode } from "@chakra-ui/react";
+
 import Link from "next/link";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-
-import { FaGithub } from "react-icons/fa";
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -33,7 +21,7 @@ export default function Navbar() {
         fontSize="4xl"
         fontWeight="extrabold"
       >
-        <Link href="/"> Dublin Startup Ecosystem</Link>
+        <Link href="/"> Dublin Startups</Link>
       </Heading>
       <Flex alignItems="center" p={8}>
         <Text fontSize="xl" mr={6}>
@@ -41,12 +29,6 @@ export default function Navbar() {
         </Text>
         <Text fontSize="xl" mr={6}>
           <Link href="/events">Events</Link>
-        </Text>
-        <Text fontSize="xl" mr={6}>
-          <Link href="/hackathons">Hackathons</Link>
-        </Text>
-        <Text fontSize="xl" mr={6}>
-          <Link href="/coworkingspaces">Co-working</Link>
         </Text>
 
         <Button
@@ -61,24 +43,9 @@ export default function Navbar() {
         </Button>
 
         {/* <Box mr={6}> */}
-        <Button onClick={toggleColorMode} variant="ghost" mr={6} size="md">
+        <Button onClick={toggleColorMode} variant="ghost" mr={4} size="md">
           {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
         </Button>
-        {/* </Box> */}
-
-        {/* <Box position={"relative"}> */}
-        {/* <Icon
-            as={Arrow}
-            color={"white"}
-            w={77}
-            position={"absolute"}
-            right={68}
-            bottom={"-20px"}
-          />
-          <Text fontSize={"lg"} ml={9} transform={"rotate(20deg)"}>
-            Add a Startup
-          </Text> */}
-        {/* </Box> */}
       </Flex>
     </Flex>
   );
