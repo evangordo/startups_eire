@@ -1,4 +1,4 @@
-import { Startup, Events } from "./models";
+import { Startup } from "./models";
 import { connectToDb } from "./utils";
 
 export const getAllStartups = async () => {
@@ -10,17 +10,5 @@ export const getAllStartups = async () => {
   } catch (error) {
     console.log(error);
     throw new Error("Failed to fetch startups");
-  }
-};
-
-export const getAllEvents = async () => {
-  try {
-    connectToDb();
-    const events = await Events.find();
-
-    return events;
-  } catch (error) {
-    console.log(error);
-    throw new Error("Failed to fetch events");
   }
 };

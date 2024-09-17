@@ -27,9 +27,6 @@ export default function Navbar() {
         <Text fontSize="xl" mr={6}>
           <Link href="/">Jobs</Link>
         </Text>
-        <Text fontSize="xl" mr={6}>
-          <Link href="/events">Events</Link>
-        </Text>
 
         <Button
           mr={6}
