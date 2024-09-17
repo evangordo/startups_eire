@@ -1,4 +1,4 @@
-import { Startup, Event } from "./models";
+import { Startup, Events } from "./models";
 import { connectToDb } from "./utils";
 
 export const getAllStartups = async () => {
@@ -16,7 +16,7 @@ export const getAllStartups = async () => {
 export const getAllEvents = async () => {
   try {
     connectToDb();
-    const events = await Event.find();
+    const events = await Events.find();
 
     return events;
   } catch (error) {
