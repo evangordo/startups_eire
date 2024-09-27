@@ -1,7 +1,23 @@
-import { Heading, Flex, Input, Select } from "@chakra-ui/react";
 import React from "react";
+import { Heading, Flex, Input, Select, useColorMode } from "@chakra-ui/react";
 
-export default function Hero() {
+interface SearchAndFilterProps {
+  setSearch: (search: string) => void;
+  filter: string;
+  setFilter: (search: string) => void;
+}
+
+export default function Hero({
+  setSearch,
+  filter,
+  setFilter,
+}: SearchAndFilterProps) {
+  const { colorMode } = useColorMode();
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <>
       <Heading>Find a startup Job across Ireland</Heading>
@@ -11,7 +27,7 @@ export default function Hero() {
           flex={1}
           ml={8}
           p={2}
-          placeholder="Search  startup "
+          placeholder="Search for a startup"
           borderRadius="md"
           borderColor={colorMode === "dark" ? "white" : "black"}
           maxWidth="600px"

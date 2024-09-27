@@ -13,8 +13,6 @@ import {
   Flex,
   HStack,
   Button,
-  Input,
-  Select,
   Badge,
   ButtonGroup,
   Text,
@@ -29,32 +27,24 @@ import Link from "next/link";
 import twitter from "../assets/twitter.png";
 import { categoryColor } from "../lib/utils";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { Arrow } from "./arrow";
+import { StartupProps } from "../types/types";
 
-export default function JobsBoard() {
-  const { colorMode } = useColorMode();
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("All");
+interface JobsBoardProps {
+  search: string;
+  filter: string;
+}
+
+export default function JobsBoard({ search, filter }: JobsBoardProps) {
   const itemsPerPage = 10;
 
-  interface StartupProps {
-    name: string;
-    description: string;
-    founded: string;
-    category: string;
-    jobs: string;
-    linkedin: string;
-    twitter?: string;
-    location: string;
-  }
+  const [currentPage, setCurrentPage] = useState(1);
+
   const filteredStartups = STARTUPS.filter(
     (startup: StartupProps) =>
       startup.name.toLowerCase().includes(search.toLowerCase()) &&
       (filter === "All" ||
         startup.category.toLowerCase() === filter.toLowerCase())
   ).sort((a, b) => a.name.localeCompare(b.name));
-
-  const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -63,47 +53,10 @@ export default function JobsBoard() {
     indexOfLastItem
   );
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
-
   const totalPages = Math.ceil(filteredStartups.length / itemsPerPage);
 
   return (
     <Box>
-      <Flex mb={4} gap={4} alignItems="center">
-        <Input
-          flex={1}
-          ml={8}
-          p={2}
-          placeholder="Search  startup "
-          borderRadius="md"
-          borderColor={colorMode === "dark" ? "white" : "black"}
-          maxWidth="600px"
-          onChange={onChangeHandler}
-        />
-        <Select
-          p={1}
-          borderRadius="md"
-          borderColor={colorMode === "dark" ? "white" : "black"}
-          maxWidth="600px"
-          onChange={(e) => setFilter(e.target.value)}
-          value={filter}
-        >
-          <option value="All">All Industries</option>
-          <option value="software">Software</option>
-          <option value="hardware">Hardware</option>
-          <option value="ai">AI</option>
-          <option value="saas">SaaS</option>
-          <option value="gaming">Gaming</option>
-          <option value="fintech">FinTech</option>
-          <option value="healthtech">HealthTech</option>
-          <option value="edtech">EdTech</option>
-          <option value="security">Security</option>
-          <option value="crypto">Crypto</option>
-          <option value="other">Other</option>
-        </Select>
-      </Flex>
       <TableContainer p={4}>
         <Table variant="simple">
           <TableCaption>Jobs board for Startups based in Dublin</TableCaption>
