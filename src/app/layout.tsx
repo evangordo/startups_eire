@@ -7,9 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 import Navbar from "./components/navbar";
 
 export const metadata: Metadata = {
-  title: "Dublin Startups",
-  description:
-    "For those interested in working in Startups based in Dublin City.",
+  title: "Startup Jobs Ireland",
+  description: "For those interested in working in Startups across Ireland.",
 };
 
 export default function RootLayout({

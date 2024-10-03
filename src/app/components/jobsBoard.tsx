@@ -63,7 +63,7 @@ export default function JobsBoard({ search, filter }: JobsBoardProps) {
           <Thead>
             <Tr>
               <Th>startup</Th>
-              <Th>Description</Th>
+
               <Th>Founded</Th>
               <Th>Category</Th>
               <Th>Social</Th>
@@ -90,12 +90,6 @@ export default function JobsBoard({ search, filter }: JobsBoardProps) {
                     </Flex>
                   </Td>
 
-                  <Td>
-                    {" "}
-                    <Box maxWidth="600px" whiteSpace="normal">
-                      {startup.description}
-                    </Box>
-                  </Td>
                   <Td>{startup.founded}</Td>
                   <Td>
                     <Badge colorScheme={categoryColor(startup.category)}>

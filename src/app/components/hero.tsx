@@ -1,5 +1,15 @@
 import React from "react";
-import { Heading, Flex, Input, Select, useColorMode } from "@chakra-ui/react";
+import {
+  Heading,
+  Flex,
+  Input,
+  Select,
+  Button,
+  Container,
+  Grid,
+  Box,
+  useColorMode,
+} from "@chakra-ui/react";
 
 interface SearchAndFilterProps {
   setSearch: (search: string) => void;
@@ -13,35 +23,55 @@ export default function Hero({
   setFilter,
 }: SearchAndFilterProps) {
   const { colorMode } = useColorMode();
+  const inputBorderColor = colorMode === "dark" ? "gray.600" : "gray.300";
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
   return (
-    <>
-      <Heading>Find a startup Job across Ireland</Heading>
-
-      <Flex mb={4} gap={4} alignItems="center">
+    <Container maxW="4xl" mt={8} p={8} borderRadius="lg" boxShadow="2xl">
+      <Heading mb={8} textAlign={"center"} color="teal.600" fontWeight="bold">
+        Find Your Tech Job in Ireland
+      </Heading>
+      <Grid templateColumns={["1fr", "repeat(2, 1fr)"]} gap={6}>
         <Input
-          flex={1}
-          ml={8}
-          p={2}
-          placeholder="Search for a startup"
+          placeholder="Startup Name"
           borderRadius="md"
-          borderColor={colorMode === "dark" ? "white" : "black"}
-          maxWidth="600px"
-          onChange={onChangeHandler}
+          borderColor={inputBorderColor}
+          size="lg"
+          onChange={handleSearchChange}
+          focusBorderColor="teal.400"
+          _placeholder={{ color: "gray.400" }}
+        />
+        <Input
+          placeholder="Job Type (e.g., Software Engineer)"
+          borderRadius="md"
+          borderColor={inputBorderColor}
+          size="lg"
+          onChange={handleSearchChange}
+          focusBorderColor="teal.400"
+          _placeholder={{ color: "gray.400" }}
+        />
+        <Input
+          placeholder="Location (e.g., Dublin)"
+          borderRadius="md"
+          borderColor={inputBorderColor}
+          size="lg"
+          onChange={handleSearchChange}
+          focusBorderColor="teal.400"
+          _placeholder={{ color: "gray.400" }}
         />
         <Select
-          p={1}
+          placeholder="Select Industry"
           borderRadius="md"
-          borderColor={colorMode === "dark" ? "white" : "black"}
-          maxWidth="600px"
-          onChange={(e) => setFilter(e.target.value)}
+          borderColor={inputBorderColor}
+          size="lg"
           value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          focusBorderColor="teal.400"
         >
-          <option value="All">All Industries</option>
+          <option value="all">All Industries</option>
           <option value="software">Software</option>
           <option value="hardware">Hardware</option>
           <option value="ai">AI</option>
@@ -54,7 +84,12 @@ export default function Hero({
           <option value="crypto">Crypto</option>
           <option value="other">Other</option>
         </Select>
+      </Grid>
+      <Flex justify="center" mt={10}>
+        <Button colorScheme="teal" size="lg" w={["full", "50%"]}>
+          Search Jobs
+        </Button>
       </Flex>
-    </>
+    </Container>
   );
 }
