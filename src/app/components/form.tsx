@@ -22,8 +22,11 @@ import {
 } from "@chakra-ui/react";
 import { Editor } from "primereact/editor";
 import { submitStartup } from "@/app/lib/actions";
+import { useRouter } from "next/navigation";
 
 const StartupForm = () => {
+  const router = useRouter();
+
   const toast = useToast();
   const [jobData, setJobData] = useState({
     companyName: "",
@@ -67,10 +70,9 @@ const StartupForm = () => {
     e: any,
     field: "companyDescription" | "jobDescription"
   ) {
-    const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
     setJobData((prevValues) => ({
       ...prevValues,
-      [field]: textOnly,
+      [field]: e.htmlValue,
     }));
   }
   const handleTagInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -117,9 +119,25 @@ const StartupForm = () => {
       toast({
         title: "Startup submitted successfully",
         status: "success",
+        position: "top",
         duration: 5000,
         isClosable: true,
       });
+      setJobData({
+        companyName: "",
+        logo: null,
+        location: "",
+        category: "",
+        companyDescription: "",
+        jobDescription: "",
+        applicationLink: "",
+        tags: [],
+        jobRole: "",
+        remoteFriendly: "",
+        email: "",
+      });
+      setPreviewUrl(null);
+      router.push("/");
       console.log("Startup submitted successfully:", response);
     } catch (error) {
       toast({

@@ -42,7 +42,6 @@ export const submitStartup = async (formData: FormData) => {
       },
     });
 
-    redirect("/");
     return { success: true };
   } catch (error) {
     console.error("Detailed error:", {

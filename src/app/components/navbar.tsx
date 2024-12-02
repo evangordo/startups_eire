@@ -4,15 +4,21 @@ import {
   Heading,
   Text,
   Button,
-  useColorMode,
   Divider,
+  useBreakpointValue,
 } from "@chakra-ui/react";
-
+import se from "../assets/se.png";
 import Link from "next/link";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import Image from "./image";
 
 export default function Navbar() {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const isDesktop = useBreakpointValue({
+    base: false,
+    md: true,
+    lg: true,
+    xl: true,
+  });
+
   return (
     <>
       <Flex
@@ -22,15 +28,20 @@ export default function Navbar() {
         width="100%"
         gap={6}
       >
-        <Heading
-          p={8}
-          bgGradient="linear(to-r, #2c797b, #2c797b)"
-          bgClip="text"
-          fontSize="4xl"
-          fontWeight="extrabold"
-        >
-          <Link href="/"> Startups Eire</Link>
-        </Heading>
+        <Flex alignItems="center" gap={-4}>
+          <Image src={se} alt="Startups Eire" p={2} width={100} height={100} />
+          {isDesktop && (
+            <Heading
+              p={2}
+              bgGradient="linear(to-r, #2c797b, #2c797b)"
+              bgClip="text"
+              fontSize="4xl"
+              fontWeight="extrabold"
+            >
+              <Link href="/"> Startups Eire</Link>
+            </Heading>
+          )}
+        </Flex>
         <Flex alignItems="center" p={8}>
           <Text fontSize="xl" mr={6}>
             <Link href="/">Jobs</Link>
@@ -41,11 +52,6 @@ export default function Navbar() {
               Post a Job
             </Button>
           </Link>
-
-          {/* <Box mr={6}>
-          <Button onClick={toggleColorMode} variant="ghost" mr={4} size="md">
-            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-          </Button> */}
         </Flex>
       </Flex>
       <Divider borderColor="gray.800" />

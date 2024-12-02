@@ -5,11 +5,9 @@ import {
   Flex,
   Text,
   Badge,
-  IconButton,
   Avatar,
   Button,
-  UnorderedList,
-  ListItem,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
@@ -36,6 +34,12 @@ interface Job {
 
 export default function JobsCard({ job }: { job: Job }) {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const isDesktop = useBreakpointValue({
+    base: false,
+    md: true,
+    lg: true,
+    xl: true,
+  });
 
   return (
     <Container maxW={"7xl"} mt={5} mb={5}>
@@ -103,7 +107,7 @@ export default function JobsCard({ job }: { job: Job }) {
                 {job.tags.map((tag: string) => (
                   <Badge
                     key={tag}
-                    colorScheme="blue"
+                    colorScheme="teal"
                     px={4}
                     py={1.5}
                     borderRadius="full"

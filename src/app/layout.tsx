@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 import Navbar from "./components/navbar";
 
 export const metadata: Metadata = {
-  title: "Startup Eire",
+  title: "Startups Eire",
   description: "For those interested in working in Startups across Ireland.",
 };
 
