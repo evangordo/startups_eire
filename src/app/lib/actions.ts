@@ -1,30 +1,38 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { Startup } from "./models";
-import { connectToDb } from "./utils";
+
+import db from "@/app/lib/utils";
 
 export const submitStartup = async (formData: FormData) => {
   const name = formData.get("companyName");
-  const description = formData.get("description");
-  const founded = formData.get("founded");
+  const description = formData.get("companyDescription");
   const category = formData.get("category");
-  const jobs = formData.get("jobs");
-  const linkedin = formData.get("linkedin");
-  const twitter = formData.get("twitter");
   const location = formData.get("location");
+  const logo = formData.get("logo");
+  const applicationLink = formData.get("applicationLink");
+  const jobDescription = formData.get("jobDescription");
+  const tags = formData.get("tags");
+  const jobRole = formData.get("jobRole");
+  const remoteFriendly = formData.get("remoteFriendly");
+  const email = formData.get("email");
 
   try {
-    connectToDb();
-    const startup = await Startup.create({
-      name,
-      description,
-      founded,
-      category,
-      jobs,
-      linkedin,
-      twitter,
-      location,
+    const startup = await db.startup.create({
+      data: {
+        companyName: name,
+        createdAt: new Date(),
+        companyDescription: description,
+        category,
+        location,
+        logo,
+        jobDescription,
+        applicationLink,
+        tags,
+        jobRole,
+        remoteFriendly,
+        email,
+      },
     });
 
     revalidatePath("/");

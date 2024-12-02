@@ -19,14 +19,13 @@ import {
   WrapItem,
   Wrap,
 } from "@chakra-ui/react";
-import { submitStartup } from "../lib/actions";
 import { Editor } from "primereact/editor";
+import { submitStartup } from "@/app/lib/actions";
 
 const StartupForm = () => {
   const [jobData, setJobData] = useState({
     companyName: "",
     logo: null,
-    jobsUrl: "",
     location: "",
     category: "",
     companyDescription: "",
@@ -43,7 +42,8 @@ const StartupForm = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value, type, checked } = e.target;
+    const target = e.target as HTMLInputElement | HTMLSelectElement;
+    const { name, value, type, checked } = target;
     setJobData({
       ...jobData,
       [name]: type === "checkbox" ? checked : value,
@@ -53,7 +53,7 @@ const StartupForm = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setJobData({ ...jobData, logo: file });
+      setJobData({ ...jobData, logo: file as any });
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
     }
@@ -76,7 +76,7 @@ const StartupForm = () => {
         newTag &&
         !jobData.tags.includes(newTag) &&
         newTag.length >= 2 &&
-        jobData.tags.length < 4
+        jobData.tags.length < 3
       ) {
         setJobData((prev) => ({
           ...prev,
@@ -251,6 +251,7 @@ const StartupForm = () => {
               <FormControl isRequired>
                 <FormLabel
                   color="black"
+                  id="applicationLink"
                   htmlFor="applicationLink"
                   fontSize="md"
                 >
@@ -283,7 +284,7 @@ const StartupForm = () => {
                   value={tagInput}
                   onChange={(e) => setTagInput(e.target.value)}
                   onKeyDown={handleTagInputKeyDown}
-                  isDisabled={jobData.tags.length >= 4}
+                  isDisabled={jobData.tags.length >= 3}
                 />
                 <Wrap spacing={2} mt={2}>
                   {jobData.tags.map((tag, index) => (

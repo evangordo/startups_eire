@@ -32,7 +32,7 @@ const UploadStartup = () => {
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
             textAlign="center"
           >
-            Upload a Job to Ireland's{" "}
+            Upload a Job to Ireland&apos;s{" "}
             <Text
               as={"span"}
               position={"relative"}
