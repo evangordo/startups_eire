@@ -17,7 +17,6 @@ model Startup {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId  
  companyName        String
   logo               String
-  jobsUrl            String
   location           String
   category           String
   companyDescription String

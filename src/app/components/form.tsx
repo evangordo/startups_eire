@@ -18,14 +18,16 @@ import {
   TagLabel,
   WrapItem,
   Wrap,
+  useToast,
 } from "@chakra-ui/react";
 import { Editor } from "primereact/editor";
 import { submitStartup } from "@/app/lib/actions";
 
 const StartupForm = () => {
+  const toast = useToast();
   const [jobData, setJobData] = useState({
     companyName: "",
-    logo: null,
+    logo: null as File | null,
     location: "",
     category: "",
     companyDescription: "",
@@ -44,10 +46,11 @@ const StartupForm = () => {
   ) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement;
     const { name, value, type } = target;
-    const checked = target as HTMLInputElement;
+    const checked =
+      type === "checkbox" ? (target as HTMLInputElement).checked : null;
     setJobData({
       ...jobData,
-      [name]: type === "checkbox" ? checked.checked : value,
+      [name]: checked !== null ? checked : value,
     });
   };
 
@@ -60,15 +63,16 @@ const StartupForm = () => {
     }
   };
 
-  function onEditorChange(e: any) {
-    // adding this so it doesnt show the <p> tags on the client
+  function onEditorChange(
+    e: any,
+    field: "companyDescription" | "jobDescription"
+  ) {
     const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
-    setJobData((prevValues: any) => ({
+    setJobData((prevValues) => ({
       ...prevValues,
-      jobDescription: textOnly,
+      [field]: textOnly,
     }));
   }
-
   const handleTagInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" || e.key === ",") {
       e.preventDefault();
@@ -97,17 +101,33 @@ const StartupForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formDataToSubmit = new FormData();
-    Object.entries(setJobData).forEach(([key, value]) => {
-      if (key === "logo" && value) {
+
+    Object.entries(jobData).forEach(([key, value]) => {
+      if (key === "logo" && value instanceof File) {
         formDataToSubmit.append("logo", value);
-      } else {
+      } else if (key === "tags" && Array.isArray(value)) {
+        formDataToSubmit.append("tags", JSON.stringify(value));
+      } else if (value !== null && value !== undefined) {
         formDataToSubmit.append(key, String(value));
       }
     });
+
     try {
       const response = await submitStartup(formDataToSubmit);
+      toast({
+        title: "Startup submitted successfully",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
       console.log("Startup submitted successfully:", response);
     } catch (error) {
+      toast({
+        title: "Error submitting startup",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
       console.error("Error submitting startup:", error);
     }
   };
@@ -185,7 +205,7 @@ const StartupForm = () => {
                   />
                 </FormControl>
                 <FormControl isRequired flex="1">
-                  <FormLabel color="black" htmlFor="companyName" fontSize="md">
+                  <FormLabel color="black" htmlFor="location" fontSize="md">
                     Location
                   </FormLabel>
                   <Input
@@ -194,8 +214,8 @@ const StartupForm = () => {
                     borderColor="gray.300"
                     bg="white"
                     color="black"
-                    name="companyName"
-                    value={jobData.companyName}
+                    name="location"
+                    value={jobData.location}
                     onChange={handleChange}
                   />
                 </FormControl>
@@ -213,7 +233,7 @@ const StartupForm = () => {
                 id="companyDescription"
                 headerTemplate={header}
                 value={jobData.companyDescription}
-                onTextChange={onEditorChange}
+                onTextChange={(e) => onEditorChange(e, "companyDescription")}
                 style={{ height: "320px" }}
               />
             </FormControl>
@@ -243,7 +263,7 @@ const StartupForm = () => {
                 id="jobDescription"
                 headerTemplate={header}
                 value={jobData.jobDescription}
-                onTextChange={onEditorChange}
+                onTextChange={(e) => onEditorChange(e, "jobDescription")}
                 style={{ height: "320px" }}
               />
             </FormControl>
