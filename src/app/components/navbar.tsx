@@ -32,7 +32,8 @@ export default function Navbar() {
           mr={6}
           as={Link}
           href="/uploadstartup"
-          colorScheme="green"
+          bg="#2c797b"
+          color="white"
           fontSize="xl"
           size="md"
         >
