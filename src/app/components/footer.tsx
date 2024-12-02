@@ -8,7 +8,7 @@ export default function Footer() {
     <Box as="footer" py={4} textAlign="center" bg="gray.100">
       <Flex justifyContent="center" alignItems="center">
         <Link href="https://github.com" color="blue.500" isExternal>
-          Dublin startup ecosystem
+          StartupsEire
         </Link>
         <Icon mx={2} as={FaGithub} color="black" />
       </Flex>

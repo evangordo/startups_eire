@@ -34,7 +34,7 @@ const UploadStartup = () => {
             lineHeight={1.1}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
           >
-            Join Dublin's{" "}
+            Upload a Job to Ireland's{" "}
             <Text
               as={"span"}
               position={"relative"}

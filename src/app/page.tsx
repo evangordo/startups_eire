@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Hero from "./components/hero";
-import JobsBoard from "./components/jobsBoard";
 import JobsCard from "./components/jobsCard";
 
 export default function Home() {
@@ -10,8 +9,9 @@ export default function Home() {
   return (
     <main>
       <Hero setSearch={setSearch} filter={filter} setFilter={setFilter} />
-      {/* <JobsBoard search={search} filter={filter} /> */}
 
+      <JobsCard />
+      <JobsCard />
       <JobsCard />
     </main>
   );

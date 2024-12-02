@@ -28,17 +28,11 @@ export default function Navbar() {
           <Link href="/">Jobs</Link>
         </Text>
 
-        <Button
-          mr={6}
-          as={Link}
-          href="/uploadstartup"
-          bg="#2c797b"
-          color="white"
-          fontSize="xl"
-          size="md"
-        >
-          <Text>Contribute</Text>
-        </Button>
+        <Link href="/uploadstartup">
+          <Button mr={6} bg="#2c797b" color="white" fontSize="xl" size="md">
+            Post a Job
+          </Button>
+        </Link>
 
         {/* <Box mr={6}> */}
         <Button onClick={toggleColorMode} variant="ghost" mr={4} size="md">
