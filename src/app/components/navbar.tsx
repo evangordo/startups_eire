@@ -21,7 +21,7 @@ export default function Navbar() {
         fontSize="4xl"
         fontWeight="extrabold"
       >
-        <Link href="/">Startups Ireland</Link>
+        <Link href="/"> Startups Eire</Link>
       </Heading>
       <Flex alignItems="center" p={8}>
         <Text fontSize="xl" mr={6}>
@@ -32,7 +32,7 @@ export default function Navbar() {
           mr={6}
           as={Link}
           href="/uploadstartup"
-          colorScheme="blue"
+          colorScheme="green"
           fontSize="xl"
           size="md"
         >

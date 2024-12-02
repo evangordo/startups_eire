@@ -32,7 +32,7 @@ export default function Hero({
   return (
     <Container maxW="4xl" mt={8} p={8} borderRadius="lg" boxShadow="2xl">
       <Heading mb={8} textAlign={"center"} color="teal.600" fontWeight="bold">
-        Find Your Tech Job in Ireland
+        Find a job in the Irish Startup Ecosystem
       </Heading>
       <Grid templateColumns={["1fr", "repeat(2, 1fr)"]} gap={6}>
         <Input
