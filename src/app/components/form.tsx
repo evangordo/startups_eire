@@ -43,10 +43,11 @@ const StartupForm = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement;
-    const { name, value, type, checked } = target;
+    const { name, value, type } = target;
+    const checked = target as HTMLInputElement;
     setJobData({
       ...jobData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === "checkbox" ? checked.checked : value,
     });
   };
 
