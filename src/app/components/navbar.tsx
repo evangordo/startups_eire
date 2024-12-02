@@ -16,12 +16,12 @@ export default function Navbar() {
     >
       <Heading
         p={8}
-        bgGradient="linear(to-r, #00529F, #0095C8)"
+        bgGradient="linear(to-r, #2c797b, #2c797b)"
         bgClip="text"
         fontSize="4xl"
         fontWeight="extrabold"
       >
-        <Link href="/">Tech Ireland</Link>
+        <Link href="/">Startups Ireland</Link>
       </Heading>
       <Flex alignItems="center" p={8}>
         <Text fontSize="xl" mr={6}>
