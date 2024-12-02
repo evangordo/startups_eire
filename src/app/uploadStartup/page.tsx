@@ -20,7 +20,7 @@ const UploadStartup = () => {
   return (
     <Box position={"relative"} minH="100vh" py={10}>
       <Container
-        maxW="7xl"
+        maxW="8xl"
         mx="auto"
         px={{ base: 4, sm: 6, lg: 8 }}
         display="flex"

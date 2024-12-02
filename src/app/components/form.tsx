@@ -28,6 +28,7 @@ const StartupForm = () => {
     twitter: "",
     jobDescription: "",
     applicationLink: "",
+    jobRole: "",
     remoteFriendly: false,
     email: "",
   });
@@ -76,7 +77,7 @@ const StartupForm = () => {
         bg={"white"}
         rounded={"xl"}
         p={{ base: 4, sm: 6, md: 8 }}
-        maxW={{ base: "90vw", sm: "80vw", md: "70vw", lg: "60vw" }}
+        // maxW={{ base: "90vw", sm: "80vw", md: "90vw", lg: "90vw" }}
         mx="auto"
         w="full"
         boxShadow="lg"
@@ -109,7 +110,7 @@ const StartupForm = () => {
                   </Button>
                 </Flex>
               </FormControl>
-              <FormControl isRequired flex="1">
+              <FormControl mt={8} isRequired flex="1">
                 <FormLabel color="black" htmlFor="companyName" fontSize="md">
                   Company Name
                 </FormLabel>
@@ -156,7 +157,20 @@ const StartupForm = () => {
                 minH="200px"
               />
             </FormControl>
-
+            <FormControl>
+              <FormLabel color="black" htmlFor="jobRole" fontSize="md">
+                Job Role
+              </FormLabel>
+              <Input
+                borderWidth="1px"
+                borderColor="gray.300"
+                bg="white"
+                color="black"
+                name="jobRole"
+                value={formData.jobRole}
+                onChange={handleChange}
+              />
+            </FormControl>
             <FormControl isRequired>
               <FormLabel color="black" htmlFor="applicationLink" fontSize="md">
                 Application Link
@@ -184,6 +198,34 @@ const StartupForm = () => {
                 onChange={handleChange}
               />
             </FormControl>
+            <FormControl isRequired>
+              <FormLabel color="black" htmlFor="category" fontSize="md">
+                Category
+              </FormLabel>
+              <Select
+                borderWidth="1px"
+                borderColor="gray.300"
+                bg="white"
+                color="black"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+              >
+                <option value="Software">Software</option>
+
+                <option value="Hardware">Hardware</option>
+                <option value="AI">AI</option>
+                <option value="SAAS">SAAS</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Education">Education</option>
+                <option value="Fintech">Fintech</option>
+                <option value="HealthTech">HealthTech</option>
+                <option value="EdTech">EdTech</option>
+                <option value="Security">Security</option>
+                <option value="Crypto">Crypto</option>
+                <option value="Other">Other</option>
+              </Select>
+            </FormControl>
 
             <FormControl isRequired>
               <FormLabel color="black" htmlFor="email" fontSize="md">
@@ -203,8 +245,9 @@ const StartupForm = () => {
 
             <Button
               type="submit"
-              colorScheme="blue"
+              bg="#2a7879"
               size="lg"
+              color="white"
               width="full"
               mt={4}
               py={6}
