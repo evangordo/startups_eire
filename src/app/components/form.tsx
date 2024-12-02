@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   Box,
@@ -12,24 +13,30 @@ import {
   Textarea,
   Flex,
   Avatar,
+  Stack,
+  RadioGroup,
+  Radio,
 } from "@chakra-ui/react";
 import { submitStartup } from "../lib/actions";
+import { Editor } from "primereact/editor";
+
+import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 
 const StartupForm = () => {
-  const [formData, setFormData] = useState({
+  const [jobData, setJobData] = useState({
     companyName: "",
     logo: null,
     jobsUrl: "",
     location: "",
     category: "",
     founded: "",
-    description: "",
+    companyDescription: "",
     linkedin: "",
     twitter: "",
     jobDescription: "",
     applicationLink: "",
     jobRole: "",
-    remoteFriendly: false,
+    remoteFriendly: "",
     email: "",
   });
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -38,8 +45,8 @@ const StartupForm = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
+    setJobData({
+      ...jobData,
       [name]: type === "checkbox" ? checked : value,
     });
   };
@@ -47,16 +54,25 @@ const StartupForm = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setFormData({ ...formData, logo: file });
+      setJobData({ ...jobData, logo: file });
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
     }
   };
 
+  function onEditorChange(e: any) {
+    // adding this so it doesnt show the <p> tags on the client
+    const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
+    setJobData((prevValues: any) => ({
+      ...prevValues,
+      jobDescription: textOnly,
+    }));
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formDataToSubmit = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
+    Object.entries(setJobData).forEach(([key, value]) => {
       if (key === "logo" && value) {
         formDataToSubmit.append("logo", value);
       } else {
@@ -71,6 +87,23 @@ const StartupForm = () => {
     }
   };
 
+  const header = (
+    <span className="ql-formats">
+      <button className="ql-bold" aria-label="Bold"></button>
+      <button className="ql-italic" aria-label="Italic"></button>
+      <button className="ql-underline" aria-label="Underline"></button>
+      <button
+        className="ql-list"
+        value="ordered"
+        aria-label="Numbered List"
+      ></button>
+      <button
+        className="ql-list"
+        value="bullet"
+        aria-label="Bullet List"
+      ></button>
+    </span>
+  );
   return (
     <>
       <Box
@@ -120,7 +153,7 @@ const StartupForm = () => {
                   bg="white"
                   color="black"
                   name="companyName"
-                  value={formData.companyName}
+                  value={jobData.companyName}
                   onChange={handleChange}
                 />
               </FormControl>
@@ -130,34 +163,19 @@ const StartupForm = () => {
               <FormLabel color="black" htmlFor="description" fontSize="md">
                 Company Description
               </FormLabel>
-              <Textarea
-                borderWidth="1px"
-                borderColor="gray.300"
-                bg="white"
+
+              <Editor
                 color="black"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                minH="150px"
+                name="companyDescription  "
+                id="companyDescription"
+                headerTemplate={header}
+                value={jobData.companyDescription}
+                onTextChange={onEditorChange}
+                style={{ height: "320px" }}
               />
             </FormControl>
 
             <FormControl isRequired>
-              <FormLabel color="black" htmlFor="jobDescription" fontSize="md">
-                Job Description
-              </FormLabel>
-              <Textarea
-                borderWidth="1px"
-                borderColor="gray.300"
-                bg="white"
-                color="black"
-                name="jobDescription"
-                value={formData.jobDescription}
-                onChange={handleChange}
-                minH="200px"
-              />
-            </FormControl>
-            <FormControl>
               <FormLabel color="black" htmlFor="jobRole" fontSize="md">
                 Job Role
               </FormLabel>
@@ -167,10 +185,26 @@ const StartupForm = () => {
                 bg="white"
                 color="black"
                 name="jobRole"
-                value={formData.jobRole}
+                value={jobData.jobRole}
                 onChange={handleChange}
               />
             </FormControl>
+            <FormControl isRequired>
+              <FormLabel color="black" htmlFor="jobDescription" fontSize="md">
+                Job Description
+              </FormLabel>
+
+              <Editor
+                color="black"
+                name="jobDescription"
+                id="jobDescription"
+                headerTemplate={header}
+                value={jobData.jobDescription}
+                onTextChange={onEditorChange}
+                style={{ height: "320px" }}
+              />
+            </FormControl>
+
             <FormControl isRequired>
               <FormLabel color="black" htmlFor="applicationLink" fontSize="md">
                 Application Link
@@ -182,51 +216,65 @@ const StartupForm = () => {
                 color="black"
                 name="applicationLink"
                 type="url"
-                value={formData.applicationLink}
+                value={jobData.applicationLink}
                 onChange={handleChange}
               />
             </FormControl>
 
-            <FormControl>
-              <FormLabel color="black" htmlFor="remoteFriendly" fontSize="md">
-                Remote Friendly
-              </FormLabel>
-              <Input
-                type="checkbox"
-                name="remoteFriendly"
-                checked={formData.remoteFriendly}
-                onChange={handleChange}
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel color="black" htmlFor="category" fontSize="md">
-                Category
-              </FormLabel>
-              <Select
-                borderWidth="1px"
-                borderColor="gray.300"
-                bg="white"
-                color="black"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-              >
-                <option value="Software">Software</option>
+            <Flex align="center" gap={4}>
+              <FormControl>
+                <FormLabel color="black" htmlFor="remoteFriendly" fontSize="md">
+                  Remote Friendly
+                </FormLabel>
+                <RadioGroup
+                  name="remoteFriendly"
+                  value={jobData.remoteFriendly}
+                  onChange={(value) =>
+                    setJobData({ ...jobData, remoteFriendly: value })
+                  }
+                >
+                  <Stack spacing={[1, 5]} direction={["column", "row"]}>
+                    <Radio value="Yes" size="lg" colorScheme="green">
+                      Yes
+                    </Radio>
+                    <Radio value="No" size="lg" colorScheme="green">
+                      No
+                    </Radio>
+                    <Radio value="Hybrid" size="lg" colorScheme="green">
+                      Hybrid
+                    </Radio>
+                  </Stack>
+                </RadioGroup>
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel color="black" htmlFor="category" fontSize="md">
+                  Category
+                </FormLabel>
+                <Select
+                  borderWidth="1px"
+                  borderColor="gray.300"
+                  bg="white"
+                  color="black"
+                  name="category"
+                  value={jobData.category}
+                  onChange={handleChange}
+                >
+                  <option value="Software">Software</option>
 
-                <option value="Hardware">Hardware</option>
-                <option value="AI">AI</option>
-                <option value="SAAS">SAAS</option>
-                <option value="Gaming">Gaming</option>
-                <option value="Education">Education</option>
-                <option value="Fintech">Fintech</option>
-                <option value="HealthTech">HealthTech</option>
-                <option value="EdTech">EdTech</option>
-                <option value="Security">Security</option>
-                <option value="Crypto">Crypto</option>
-                <option value="Other">Other</option>
-              </Select>
-            </FormControl>
-
+                  <option value="Hardware">Hardware</option>
+                  <option value="AI">AI</option>
+                  <option value="SAAS">SAAS</option>
+                  <option value="Gaming">Gaming</option>
+                  <option value="Education">Education</option>
+                  <option value="Fintech">Fintech</option>
+                  <option value="HealthTech">HealthTech</option>
+                  <option value="EdTech">EdTech</option>
+                  <option value="Security">Security</option>
+                  <option value="Crypto">Crypto</option>
+                  <option value="Other">Other</option>
+                </Select>
+              </FormControl>
+            </Flex>
             <FormControl isRequired>
               <FormLabel color="black" htmlFor="email" fontSize="md">
                 Email Address
@@ -238,7 +286,7 @@ const StartupForm = () => {
                 color="black"
                 name="email"
                 type="email"
-                value={formData.email}
+                value={jobData.email}
                 onChange={handleChange}
               />
             </FormControl>
