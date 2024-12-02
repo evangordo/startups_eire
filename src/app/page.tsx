@@ -14,6 +14,11 @@ interface Job {
   createdAt: string;
   logo: string;
   tags: string[];
+  companyDescription: string;
+  jobDescription: string;
+  applicationLink: string;
+  remoteFriendly: string;
+  category: string;
 }
 
 export default function Home() {

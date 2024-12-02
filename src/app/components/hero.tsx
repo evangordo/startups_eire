@@ -95,7 +95,7 @@ export default function Hero({
         </Grid>
         <Flex justify="center" mt={10}>
           <Button colorScheme="teal" size="lg" w={["full", "50%"]}>
-            Search Jobs
+            Search
           </Button>
         </Flex>
       </Box>
