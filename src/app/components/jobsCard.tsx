@@ -15,7 +15,17 @@ import { FaClock } from "react-icons/fa";
 
 import React from "react";
 
-export default function JobsCard() {
+interface Job {
+  id: string;
+  jobRole: string;
+  companyName: string;
+  location: string;
+  createdAt: string;
+  logo: string;
+  tags: string[];
+}
+
+export default function JobsCard({ job }: { job: Job }) {
   return (
     <Container maxW={"4xl"} mt={5} mb={5}>
       <Box
@@ -30,37 +40,39 @@ export default function JobsCard() {
         <Flex justifyContent="space-between" alignItems="center">
           <Box>
             <Flex alignItems="center">
-              <Avatar src={`/logos/storehero.png`} size="lg" />
+              <Avatar src={job.logo} size="lg" />
               <Heading size="lg" fontWeight="bold" ml={3}>
-                Data Scientist II, Product
+                {job.jobRole}
               </Heading>
             </Flex>
             <Text color="gray.700" mt={2} fontSize="lg">
-              Google / Alphabet
+              {job.companyName}
             </Text>
             <Flex alignItems="center" mt={2} gap={2}>
               <IoLocation />
               <Text color="gray.600" fontSize="md">
-                MOUNTAIN VIEW, CA, USA / NEW YORK, NY, USA
+                {job.location}
               </Text>
             </Flex>
             <Flex alignItems="center" gap={2} mt={2}>
               <FaClock color="black" />
               <Text color="gray.600" fontSize="md">
-                20 hours ago
+                {job.createdAt}
               </Text>
             </Flex>
 
             <Flex mt={4} gap={3}>
-              <Badge colorScheme="blue" px={3} py={1} borderRadius="full">
-                Python
-              </Badge>
-              <Badge colorScheme="gray" px={3} py={1} borderRadius="full">
-                SQL
-              </Badge>
-              <Badge colorScheme="teal" px={3} py={1} borderRadius="full">
-                Android
-              </Badge>
+              {job.tags.map((tag: string) => (
+                <Badge
+                  key={tag}
+                  colorScheme="blue"
+                  px={3}
+                  py={1}
+                  borderRadius="full"
+                >
+                  {tag}
+                </Badge>
+              ))}
             </Flex>
           </Box>
           <Button

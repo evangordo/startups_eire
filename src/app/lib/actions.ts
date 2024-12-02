@@ -1,5 +1,4 @@
 "use server";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
@@ -67,7 +66,10 @@ async function uploadFile(file: File) {
 
     const { data, error } = await supabase.storage
       .from("StartupsEire")
-      .upload(`logos/${uniqueFileName}`, file);
+      .upload(`logos/${uniqueFileName}`, file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
 
     if (error) {
       console.error("Error uploading file:", error);
@@ -79,7 +81,6 @@ async function uploadFile(file: File) {
     } = supabase.storage
       .from("StartupsEire")
       .getPublicUrl(`logos/${uniqueFileName}`);
-
     return publicUrl;
   } catch (error) {
     console.error("Error in uploadFile:", error);
