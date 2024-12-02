@@ -18,8 +18,11 @@ const theme = extendTheme({
   styles: {
     global: (props: any) => ({
       body: {
-        bg: props.colorMode === "dark" ? "black" : "white",
-        color: props.colorMode === "dark" ? "white" : "black",
+        bg: props.colorMode === "dark" ? "black" : "#f4f5ee",
+        color: props.colorMode === "dark" ? "#f4f5ee" : "black",
+      },
+      ".bg-color": {
+        bg: props.colorMode === "dark" ? "black" : "#f4f5ee",
       },
     }),
   },

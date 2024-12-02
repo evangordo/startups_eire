@@ -32,6 +32,7 @@ export default function Hero({
   return (
     <Container maxW="4xl" mt={8} p={8} borderRadius="lg">
       <Box
+        bg="white"
         borderWidth={"1px"}
         borderColor={"gray.300"}
         borderRadius={"lg"}

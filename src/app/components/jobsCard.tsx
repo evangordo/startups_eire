@@ -25,7 +25,7 @@ export default function JobsCard() {
         p={6}
         shadow={"lg"}
         color={"black"}
-        bgGradient="linear(to-r, gray.100, gray.200)"
+        bg="white"
       >
         <Flex justifyContent="space-between" alignItems="center">
           <Box>
