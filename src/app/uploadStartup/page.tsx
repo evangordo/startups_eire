@@ -7,9 +7,6 @@ import {
   Heading,
   Text,
   Container,
-  SimpleGrid,
-  Avatar,
-  AvatarGroup,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import StartupForm from "../components/form";
@@ -21,18 +18,19 @@ const STARTUP_LOGOS = [
 ];
 const UploadStartup = () => {
   return (
-    <Box position={"relative"}>
+    <Box position={"relative"} minH="100vh" py={10}>
       <Container
-        as={SimpleGrid}
-        maxW={"7xl"}
-        columns={{ base: 1, md: 2 }}
-        spacing={{ base: 10, lg: 32 }}
-        py={{ base: 10, sm: 20, lg: 32 }}
+        maxW="7xl"
+        mx="auto"
+        px={{ base: 4, sm: 6, lg: 8 }}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
       >
-        <Stack spacing={{ base: 10, md: 20 }}>
+        <Stack spacing={{ base: 10, md: 20 }} align="center" maxW="4xl" mb={10}>
           <Heading
-            lineHeight={1.1}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
+            textAlign="center"
           >
             Upload a Job to Ireland's{" "}
             <Text
@@ -45,7 +43,7 @@ const UploadStartup = () => {
                 position: "absolute",
                 bottom: 1,
                 left: 0,
-                bg: "blue.400",
+                bg: "#2a7879",
                 zIndex: -1,
               }}
             >
@@ -53,31 +51,7 @@ const UploadStartup = () => {
             </Text>{" "}
             Ecosystem
           </Heading>
-          <Stack direction={"row"} spacing={4} align={"center"}>
-            <AvatarGroup>
-              {STARTUP_LOGOS.map((avatar) => (
-                <Avatar
-                  key={avatar.name}
-                  name={avatar.name}
-                  src={avatar.url}
-                  size={useBreakpointValue({ base: "md", md: "lg" })}
-                  position={"relative"}
-                  zIndex={2}
-                  _before={{
-                    content: '""',
-                    width: "full",
-                    height: "full",
-                    rounded: "full",
-                    transform: "scale(1.125)",
-                    bgGradient: "linear(to-r, #00529F, #0095C8)",
-                    position: "absolute",
-                    zIndex: -1,
-                    top: 0,
-                    left: 0,
-                  }}
-                />
-              ))}
-            </AvatarGroup>
+          {/* <Stack direction={"row"} spacing={4} align={"center"}>
             <Text fontFamily={"heading"} fontSize={{ base: "4xl", md: "6xl" }}>
               +
             </Text>
@@ -98,7 +72,7 @@ const UploadStartup = () => {
                 height: "full",
                 rounded: "full",
                 transform: "scale(1.125)",
-                bgGradient: "linear(to-bl, orange.400,yellow.400)",
+                bgGradient: "linear(to-bl, green.400,yellow.400)",
                 position: "absolute",
                 zIndex: -1,
                 top: 0,
@@ -107,9 +81,12 @@ const UploadStartup = () => {
             >
               Yours
             </Flex>
-          </Stack>
+          </Stack> */}
         </Stack>
-        <StartupForm />
+
+        <Box w="full" maxW="4xl" mx="auto">
+          <StartupForm />
+        </Box>
       </Container>
     </Box>
   );
