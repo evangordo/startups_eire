@@ -8,19 +8,19 @@ import {
   Input,
   VStack,
   Select,
-  SimpleGrid,
-  Heading,
-  Textarea,
   Flex,
   Avatar,
   Stack,
   RadioGroup,
   Radio,
+  Tag,
+  TagCloseButton,
+  TagLabel,
+  WrapItem,
+  Wrap,
 } from "@chakra-ui/react";
 import { submitStartup } from "../lib/actions";
 import { Editor } from "primereact/editor";
-
-import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 
 const StartupForm = () => {
   const [jobData, setJobData] = useState({
@@ -29,17 +29,16 @@ const StartupForm = () => {
     jobsUrl: "",
     location: "",
     category: "",
-    founded: "",
     companyDescription: "",
-    linkedin: "",
-    twitter: "",
     jobDescription: "",
     applicationLink: "",
+    tags: [] as string[],
     jobRole: "",
     remoteFriendly: "",
     email: "",
   });
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [tagInput, setTagInput] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -69,6 +68,31 @@ const StartupForm = () => {
     }));
   }
 
+  const handleTagInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" || e.key === ",") {
+      e.preventDefault();
+      const newTag = tagInput.trim();
+      if (
+        newTag &&
+        !jobData.tags.includes(newTag) &&
+        newTag.length >= 2 &&
+        jobData.tags.length < 4
+      ) {
+        setJobData((prev) => ({
+          ...prev,
+          tags: [...prev.tags, newTag],
+        }));
+        setTagInput("");
+      }
+    }
+  };
+
+  const removeTag = (tagToRemove: string) => {
+    setJobData((prev) => ({
+      ...prev,
+      tags: prev.tags.filter((tag) => tag !== tagToRemove),
+    }));
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formDataToSubmit = new FormData();
@@ -118,7 +142,7 @@ const StartupForm = () => {
         <form onSubmit={handleSubmit}>
           <VStack spacing={5} align="stretch" width="100%">
             <Flex gap={4} align="flex-start">
-              <FormControl width="200px">
+              <FormControl isRequired width="200px">
                 <FormLabel color="black" htmlFor="logo" fontSize="md">
                   Company Logo
                 </FormLabel>
@@ -143,20 +167,38 @@ const StartupForm = () => {
                   </Button>
                 </Flex>
               </FormControl>
-              <FormControl mt={8} isRequired flex="1">
-                <FormLabel color="black" htmlFor="companyName" fontSize="md">
-                  Company Name
-                </FormLabel>
-                <Input
-                  borderWidth="1px"
-                  borderColor="gray.300"
-                  bg="white"
-                  color="black"
-                  name="companyName"
-                  value={jobData.companyName}
-                  onChange={handleChange}
-                />
-              </FormControl>
+              <VStack>
+                <FormControl mt={3} isRequired flex="1">
+                  <FormLabel color="black" htmlFor="companyName" fontSize="md">
+                    Company Name
+                  </FormLabel>
+                  <Input
+                    width="500px"
+                    borderWidth="1px"
+                    borderColor="gray.300"
+                    bg="white"
+                    color="black"
+                    name="companyName"
+                    value={jobData.companyName}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+                <FormControl isRequired flex="1">
+                  <FormLabel color="black" htmlFor="companyName" fontSize="md">
+                    Location
+                  </FormLabel>
+                  <Input
+                    placeholder="e.g. Dublin, Galway, Cork"
+                    borderWidth="1px"
+                    borderColor="gray.300"
+                    bg="white"
+                    color="black"
+                    name="companyName"
+                    value={jobData.companyName}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              </VStack>
             </Flex>
 
             <FormControl isRequired>
@@ -205,22 +247,61 @@ const StartupForm = () => {
               />
             </FormControl>
 
-            <FormControl isRequired>
-              <FormLabel color="black" htmlFor="applicationLink" fontSize="md">
-                Application Link
-              </FormLabel>
-              <Input
-                borderWidth="1px"
-                borderColor="gray.300"
-                bg="white"
-                color="black"
-                name="applicationLink"
-                type="url"
-                value={jobData.applicationLink}
-                onChange={handleChange}
-              />
-            </FormControl>
+            <Flex textAlign="center" gap={4}>
+              <FormControl isRequired>
+                <FormLabel
+                  color="black"
+                  htmlFor="applicationLink"
+                  fontSize="md"
+                >
+                  Application Link
+                </FormLabel>
+                <Input
+                  borderWidth="1px"
+                  borderColor="gray.300"
+                  bg="white"
+                  color="black"
+                  name="applicationLink"
+                  type="url"
+                  value={jobData.applicationLink}
+                  onChange={handleChange}
+                />
+              </FormControl>
 
+              <FormControl isRequired>
+                <FormLabel color="black" htmlFor="tags" fontSize="md">
+                  Tags
+                </FormLabel>
+                <Input
+                  borderWidth="1px"
+                  borderColor="gray.300"
+                  bg="white"
+                  color="black"
+                  placeholder={"Type and press Enter to add tags, e.g. 'React'"}
+                  name="tags"
+                  type="text"
+                  value={tagInput}
+                  onChange={(e) => setTagInput(e.target.value)}
+                  onKeyDown={handleTagInputKeyDown}
+                  isDisabled={jobData.tags.length >= 4}
+                />
+                <Wrap spacing={2} mt={2}>
+                  {jobData.tags.map((tag, index) => (
+                    <WrapItem key={index}>
+                      <Tag
+                        size="md"
+                        borderRadius="full"
+                        variant="solid"
+                        colorScheme="teal"
+                      >
+                        <TagLabel>{tag}</TagLabel>
+                        <TagCloseButton onClick={() => removeTag(tag)} />
+                      </Tag>
+                    </WrapItem>
+                  ))}
+                </Wrap>
+              </FormControl>
+            </Flex>
             <Flex align="center" gap={4}>
               <FormControl>
                 <FormLabel color="black" htmlFor="remoteFriendly" fontSize="md">
