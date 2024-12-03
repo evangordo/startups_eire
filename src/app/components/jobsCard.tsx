@@ -17,8 +17,7 @@ import { FaCalendar } from "react-icons/fa";
 import { MdCategory } from "react-icons/md";
 import { FaLaptop } from "react-icons/fa";
 import { FaBriefcase } from "react-icons/fa";
-import ReactHtmlParser from "react-html-parser";
-
+import parse from "html-react-parser";
 import { FaArrowCircleDown } from "react-icons/fa";
 
 import React from "react";
@@ -216,12 +215,6 @@ export default function JobsCard({ job }: { job: Job }) {
               }}
               aria-label="Toggle job details"
             >
-              {/* {isExpanded
-                ? "Hide Details"
-                : isDesktop
-                ? "View Details"
-                : "View"} */}
-
               {isExpanded
                 ? isDesktop
                   ? "Hide Details"
@@ -256,7 +249,7 @@ export default function JobsCard({ job }: { job: Job }) {
                     fontSize={{ base: "md", md: "lg" }}
                     mb={6}
                   >
-                    {ReactHtmlParser(job.companyDescription)}
+                    {parse(job.companyDescription)}
                   </Text>
                 </Box>
               </Box>
@@ -278,7 +271,7 @@ export default function JobsCard({ job }: { job: Job }) {
                     fontSize={{ base: "md", md: "lg" }}
                     mb={6}
                   >
-                    {ReactHtmlParser(job.jobDescription)}
+                    {parse(job.jobDescription)}
                   </Text>
                 </Box>
               </Box>
