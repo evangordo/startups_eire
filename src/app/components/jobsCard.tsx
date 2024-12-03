@@ -212,8 +212,16 @@ export default function JobsCard({ job }: { job: Job }) {
               }}
               aria-label="Toggle job details"
             >
-              {isExpanded
+              {/* {isExpanded
                 ? "Hide Details"
+                : isDesktop
+                ? "View Details"
+                : "View"} */}
+
+              {isExpanded
+                ? isDesktop
+                  ? "Hide Details"
+                  : "Hide"
                 : isDesktop
                 ? "View Details"
                 : "View"}
@@ -223,9 +231,12 @@ export default function JobsCard({ job }: { job: Job }) {
 
         {isExpanded && (
           <Box borderTop="1px" borderColor="gray.200" bg="gray.50" p={8}>
-            <SimpleGrid columns={2} spacing={8}>
+            <SimpleGrid
+              columns={{ base: 1, md: 2 }}
+              spacing={{ base: 6, md: 8, lg: 8 }}
+            >
               <Box>
-                <Heading size="md" mb={4}>
+                <Heading size={{ base: "md", md: "lg", lg: "lg" }} mb={4}>
                   About the Company
                 </Heading>
                 <Box
@@ -236,25 +247,33 @@ export default function JobsCard({ job }: { job: Job }) {
                   borderColor="gray.200"
                   shadow="md"
                 >
-                  <Text color="black" fontSize="lg" mb={6}>
+                  <Text
+                    color="black"
+                    fontSize={{ base: "md", md: "lg" }}
+                    mb={6}
+                  >
                     {ReactHtmlParser(job.companyDescription)}
                   </Text>
                 </Box>
               </Box>
 
               <Box>
-                <Heading size="md" mb={4}>
+                <Heading size={{ base: "md", md: "lg", lg: "lg" }} mb={4}>
                   About the Job
                 </Heading>
                 <Box
                   bg="#f4f5ef"
-                  p={8}
+                  p={{ base: 6, md: 8, lg: 8 }}
                   borderRadius="lg"
                   border="1px"
                   borderColor="gray.200"
                   shadow="md"
                 >
-                  <Text color="black" fontSize="lg" mb={6}>
+                  <Text
+                    color="black"
+                    fontSize={{ base: "md", md: "lg" }}
+                    mb={6}
+                  >
                     {ReactHtmlParser(job.jobDescription)}
                   </Text>
                 </Box>
