@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     "Startup Careers",
     "Startup Life",
   ],
-  metadataBase: new URL("https://resilientai.xyz/"),
+  metadataBase: new URL("https://startupseire.com/"),
 
   icons: {
     icon: [
       {
-        url: "https://resilientai.xyz/favicon.ico",
+        url: "https://startupseire.com/favicon.ico",
         type: "image/x-icon",
       },
       {
-        url: "https://resilientai.xyz/static/resilient.png",
+        url: "https://startupseire.com/static/se.png", // Removed double https://
         sizes: "16x16",
         type: "image/png",
       },
@@ -53,6 +53,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" />
+      </head>
       <body>
         {" "}
         <Providers>
