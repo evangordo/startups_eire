@@ -189,7 +189,12 @@ const StartupForm = () => {
                   Company Logo
                 </FormLabel>
                 <Flex direction="column" align="center">
-                  <Avatar size="xl" src={previewUrl || undefined} mb={2} />
+                  <Avatar
+                    size="xl"
+                    src={previewUrl || undefined}
+                    mb={2}
+                    rounded="md"
+                  />
                   <Input
                     type="file"
                     name="logo"
@@ -276,7 +281,7 @@ const StartupForm = () => {
               </FormControl>
 
               <FormControl isRequired>
-                <FormLabel color="black" htmlFor="jobRole" fontSize="md">
+                <FormLabel color="black" htmlFor="experience" fontSize="md">
                   Experience
                 </FormLabel>
                 <Select
@@ -288,13 +293,15 @@ const StartupForm = () => {
                   value={jobData.experience}
                   onChange={handleChange}
                 >
-                  <option value="0-2">Intern</option>
-                  <option>Entry Level</option>
-                  <option>Associate</option>
-                  <option value="5-10">Mid-Senior</option>
-                  <option value="10+">Senior</option>
-                  <option value="15+">Director</option>
-                  <option value="20+">Contractor/Freelancer</option>
+                  <option value="internship">Internship</option>
+                  <option value="entry-level">Entry Level</option>
+                  <option value="associate">Associate</option>
+                  <option value="mid-senior">Mid-Senior</option>
+                  <option value="senior">Senior</option>
+                  <option value="director">Director</option>
+                  <option value="contractor/freelancer">
+                    Contractor/Freelancer
+                  </option>
                 </Select>
               </FormControl>
             </Flex>
@@ -373,7 +380,7 @@ const StartupForm = () => {
             <Flex align="center" gap={4}>
               <FormControl>
                 <FormLabel color="black" htmlFor="remoteFriendly" fontSize="md">
-                  Remote Friendly
+                  Work Environment
                 </FormLabel>
                 <RadioGroup
                   name="remoteFriendly"
@@ -383,13 +390,13 @@ const StartupForm = () => {
                   }
                 >
                   <Stack spacing={[1, 5]} direction={["column", "row"]}>
-                    <Radio value="Yes" size="lg" colorScheme="green">
-                      Yes
+                    <Radio value="in-office" size="lg" colorScheme="green">
+                      In-office
                     </Radio>
-                    <Radio value="No" size="lg" colorScheme="green">
-                      No
+                    <Radio value="remote" size="lg" colorScheme="green">
+                      Remote
                     </Radio>
-                    <Radio value="Hybrid" size="lg" colorScheme="green">
+                    <Radio value="hybrid" size="lg" colorScheme="green">
                       Hybrid
                     </Radio>
                   </Stack>

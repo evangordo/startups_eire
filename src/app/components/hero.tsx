@@ -19,12 +19,18 @@ interface SearchAndFilterProps {
   setSearch: (search: string) => void;
   filter: string;
   setFilter: (search: string) => void;
+  handleSearch: () => void;
+  setLocation: (location: string) => void;
+  setExperience: (experience: string) => void;
 }
 
 export default function Hero({
   setSearch,
   filter,
   setFilter,
+  handleSearch,
+  setLocation,
+  setExperience,
 }: SearchAndFilterProps) {
   const isDesktop = useBreakpointValue({
     base: false,
@@ -35,12 +41,8 @@ export default function Hero({
   const { colorMode } = useColorMode();
   const inputBorderColor = colorMode === "dark" ? "gray.600" : "gray.300";
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
-
   return (
-    <Container maxW="4xl" mt={8} p={8} borderRadius="lg">
+    <Container maxW="5xl" mt={8} p={8} borderRadius="lg">
       <Box
         bg="white"
         borderWidth={"1px"}
@@ -119,8 +121,9 @@ export default function Hero({
             size="lg"
             focusBorderColor="teal.400"
             _placeholder={{ color: "gray.400" }}
+            onChange={(e) => setExperience(e.target.value)}
           >
-            <option>Intern</option>
+            <option>Internship</option>
             <option>Entry Level</option>
             <option>Associate</option>
             <option>Mid-Senior</option>
@@ -133,7 +136,7 @@ export default function Hero({
             borderRadius="md"
             borderColor={inputBorderColor}
             size="lg"
-            onChange={handleSearchChange}
+            onChange={(e) => setSearch(e.target.value)}
             focusBorderColor="teal.400"
             _placeholder={{ color: "gray.400" }}
           />
@@ -142,9 +145,9 @@ export default function Hero({
             borderRadius="md"
             borderColor={inputBorderColor}
             size="lg"
-            onChange={handleSearchChange}
             focusBorderColor="teal.400"
             _placeholder={{ color: "gray.400" }}
+            onChange={(e) => setLocation(e.target.value)}
           />
           <Select
             placeholder="Select Industry"
@@ -170,26 +173,16 @@ export default function Hero({
           </Select>
         </Grid>
         <Flex justify="center" mt={10}>
-          <Button colorScheme="teal" size="lg" w={["full", "50%"]}>
+          <Button
+            bg="#2a7879"
+            color={"white"}
+            size="lg"
+            w={["full", "50%"]}
+            onClick={handleSearch}
+          >
             Search
           </Button>
         </Flex>
-        {/* <Box
-          position="absolute"
-          bottom={-10}
-          left="50%"
-          transform="translateX(-50%)"
-          display={["none", "flex"]}
-          gap={4}
-          color="gray.500"
-          fontSize="sm"
-        >
-          <Text>500+ Startups</Text>
-          <Text>•</Text>
-          <Text>1000+ Jobs</Text>
-          <Text>•</Text>
-          <Text>100+ Tech Companies</Text>
-        </Box> */}
       </Box>
     </Container>
   );

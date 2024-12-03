@@ -29,7 +29,15 @@ export default function Navbar() {
         gap={6}
       >
         <Flex alignItems="center" gap={-4}>
-          <Image src={se} alt="Startups Eire" p={2} width={100} height={100} />
+          <Link href="/">
+            <Image
+              src={se}
+              alt="Startups Eire"
+              p={2}
+              width={{ base: 90, md: 100, lg: 100 }}
+              height={{ base: 90, md: 100, lg: 100 }}
+            />
+          </Link>
           {isDesktop && (
             <Heading
               p={2}

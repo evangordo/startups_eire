@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 import Hero from "./components/hero";
 import JobsCard from "./components/jobsCard";
@@ -23,21 +23,61 @@ interface Job {
   applicationLink: string;
   remoteFriendly: string;
   category: string;
+  experience: string;
 }
 
 export default function Home() {
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("All");
-
   const { data, error, isLoading } = useSWR("/api/fetch-jobs", fetcher);
+  const [filter, setFilter] = useState("All");
+  const [search, setSearch] = useState("");
+  const [location, setLocation] = useState("");
+  const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
+  const [experience, setExperience] = useState("");
+
+  useEffect(() => {
+    if (data) {
+      setFilteredJobs(data);
+    }
+  }, [data]);
+
+  const filterCategory = data?.filter((job: Job) =>
+    filter === "All"
+      ? true
+      : job.category.toLowerCase() === filter.toLowerCase()
+  );
+
+  const filterSearch = filterCategory?.filter((job: Job) =>
+    job.jobRole.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const filterLocation = filterSearch?.filter((job: Job) =>
+    location.length > 4
+      ? true
+      : job.location.toLowerCase().includes(location.toLowerCase())
+  );
+
+  // const filterExperience = filterLocation?.filter((job: Job) =>
+  //   job.experience?.toLowerCase().includes(experience.toLowerCase())
+  // );
+
+  const handleSearch = () => {
+    setFilteredJobs(filterLocation || []);
+  };
 
   return (
     <main>
-      <Hero setSearch={setSearch} filter={filter} setFilter={setFilter} />
+      <Hero
+        setFilter={setFilter}
+        filter={filter}
+        setSearch={setSearch}
+        handleSearch={handleSearch}
+        setLocation={setLocation}
+        setExperience={setExperience}
+      />
       {isLoading ? (
         <LoadingSkeletons />
       ) : (
-        data?.map((job: Job) => <JobsCard key={job.id} job={job} />)
+        filteredJobs.map((job: Job) => <JobsCard key={job.id} job={job} />)
       )}
     </main>
   );
