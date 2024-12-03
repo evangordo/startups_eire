@@ -52,6 +52,9 @@ export default function Navbar() {
         </Flex>
         <Flex alignItems="center" p={8}>
           <Text fontSize="xl" mr={6}>
+            <Link href="/">Blog</Link>
+          </Text>
+          <Text fontSize="xl" mr={6}>
             <Link href="/">Jobs</Link>
           </Text>
 
