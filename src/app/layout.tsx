@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         type: "image/x-icon",
       },
       {
-        url: "https://startupseire.com/static/se.png", // Removed double https://
+        url: "https://startupseire.com/static/se.png",
         sizes: "16x16",
         type: "image/png",
       },
