@@ -11,6 +11,39 @@ import Navbar from "./components/navbar";
 export const metadata: Metadata = {
   title: "Startups Eire",
   description: "For those interested in working in Startups across Ireland.",
+  keywords: [
+    "Startups in Ireland",
+    "Job Opportunities",
+    "Startup Jobs",
+    "Startup Careers",
+    "Startup Life",
+  ],
+  metadataBase: new URL("https://resilientai.xyz/"),
+
+  icons: {
+    icon: [
+      {
+        url: "https://resilientai.xyz/favicon.ico",
+        type: "image/x-icon",
+      },
+      {
+        url: "https://resilientai.xyz/static/resilient.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
