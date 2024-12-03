@@ -9,6 +9,7 @@ import {
   Button,
   useBreakpointValue,
   HStack,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
@@ -172,7 +173,7 @@ export default function JobsCard({ job }: { job: Job }) {
 
         {isExpanded && (
           <Box borderTop="1px" borderColor="gray.200" bg="gray.50" p={8}>
-            <Flex gap={8}>
+            <SimpleGrid columns={2} spacing={8}>
               <Box>
                 <Heading size="md" mb={4}>
                   About the Company
@@ -189,8 +190,10 @@ export default function JobsCard({ job }: { job: Job }) {
                     {job.companyDescription}
                   </Text>
                 </Box>
+              </Box>
 
-                <Heading size="md" mb={4} mt={8}>
+              <Box>
+                <Heading size="md" mb={4}>
                   About the Job
                 </Heading>
                 <Box
@@ -207,7 +210,7 @@ export default function JobsCard({ job }: { job: Job }) {
                 </Box>
               </Box>
 
-              <Box flex="1">
+              <Box>
                 <Heading size="md" mb={4}>
                   Remote Friendly
                 </Heading>
@@ -223,31 +226,30 @@ export default function JobsCard({ job }: { job: Job }) {
                     {job.remoteFriendly}
                   </Text>
                 </Box>
-
-                <Button
-                  as="a"
-                  size={{ base: "md", md: "lg", lg: "xl" }}
-                  href={job.applicationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  colorScheme="teal"
-                  width="full"
-                  mt={8}
-                  rightIcon={<FaExternalLinkAlt />}
-                  _hover={{
-                    transform: "translateY(-2px)",
-                    boxShadow: "lg",
-                  }}
-                  _active={{
-                    transform: "translateY(0)",
-                  }}
-                  transition="all 0.2s"
-                  aria-label={`Apply for ${job.jobRole} position at ${job.companyName}`}
-                >
-                  Apply Now
-                </Button>
               </Box>
-            </Flex>
+            </SimpleGrid>
+
+            <Button
+              as="a"
+              href={job.applicationLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              colorScheme="teal"
+              width="full"
+              mt={8}
+              rightIcon={<FaExternalLinkAlt />}
+              _hover={{
+                transform: "translateY(-2px)",
+                boxShadow: "lg",
+              }}
+              _active={{
+                transform: "translateY(0)",
+              }}
+              transition="all 0.2s"
+              aria-label={`Apply for ${job.jobRole} position at ${job.companyName}`}
+            >
+              Apply Now
+            </Button>
           </Box>
         )}
       </Box>

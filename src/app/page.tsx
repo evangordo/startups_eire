@@ -30,7 +30,6 @@ export default function Home() {
   const [filter, setFilter] = useState("All");
 
   const { data, error, isLoading } = useSWR("/api/fetch-jobs", fetcher);
-  console.log("fetching data", data);
 
   return (
     <main>
