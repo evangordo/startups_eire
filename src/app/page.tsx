@@ -23,7 +23,7 @@ interface Job {
   applicationLink: string;
   remoteFriendly: string;
   category: string;
-  experience: string;
+  experience?: string;
 }
 
 export default function Home() {
@@ -56,12 +56,12 @@ export default function Home() {
       : job.location.toLowerCase().includes(location.toLowerCase())
   );
 
-  // const filterExperience = filterLocation?.filter((job: Job) =>
-  //   job.experience?.toLowerCase().includes(experience.toLowerCase())
-  // );
+  const filterExperience = filterLocation?.filter((job: Job) =>
+    job.experience?.toLowerCase().includes(experience.toLowerCase())
+  );
 
   const handleSearch = () => {
-    setFilteredJobs(filterLocation || []);
+    setFilteredJobs(filterExperience || []);
   };
 
   return (

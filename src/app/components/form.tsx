@@ -294,12 +294,12 @@ const StartupForm = () => {
                   onChange={handleChange}
                 >
                   <option value="internship">Internship</option>
-                  <option value="entry-level">Entry Level</option>
-                  <option value="associate">Associate</option>
-                  <option value="mid-senior">Mid-Senior</option>
-                  <option value="senior">Senior</option>
-                  <option value="director">Director</option>
-                  <option value="contractor/freelancer">
+                  <option value="Entry Level">Entry Level</option>
+                  <option value="Associate">Associate</option>
+                  <option value="Mid-Senior">Mid-Senior</option>
+                  <option value="Senior">Senior</option>
+                  <option value="Director">Director</option>
+                  <option value="Contractor/Freelancer">
                     Contractor/Freelancer
                   </option>
                 </Select>
@@ -390,13 +390,13 @@ const StartupForm = () => {
                   }
                 >
                   <Stack spacing={[1, 5]} direction={["column", "row"]}>
-                    <Radio value="in-office" size="lg" colorScheme="green">
+                    <Radio value="In-office" size="lg" colorScheme="green">
                       In-office
                     </Radio>
-                    <Radio value="remote" size="lg" colorScheme="green">
+                    <Radio value="Remote" size="lg" colorScheme="green">
                       Remote
                     </Radio>
-                    <Radio value="hybrid" size="lg" colorScheme="green">
+                    <Radio value="Hybrid" size="lg" colorScheme="green">
                       Hybrid
                     </Radio>
                   </Stack>
@@ -419,7 +419,7 @@ const StartupForm = () => {
 
                   <option value="Hardware">Hardware</option>
                   <option value="AI">AI</option>
-                  <option value="SAAS">SaaS</option>
+                  <option value="SaaS">SaaS</option>
                   <option value="Gaming">Gaming</option>
                   <option value="Education">Education</option>
                   <option value="Fintech">Fintech</option>

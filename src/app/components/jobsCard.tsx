@@ -36,7 +36,7 @@ interface Job {
   applicationLink: string;
   remoteFriendly: string;
   category: string;
-  experience: string;
+  experience?: string;
 }
 
 export default function JobsCard({ job }: { job: Job }) {
@@ -69,6 +69,10 @@ export default function JobsCard({ job }: { job: Job }) {
     }
 
     return `${diffDays} days ago`;
+  };
+
+  const firstLetterCapital = (word: string) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
   return (
@@ -120,7 +124,7 @@ export default function JobsCard({ job }: { job: Job }) {
                 <Flex alignItems="center" gap={2}>
                   <IoLocation size={20} color="#4A5568" />
                   <Text color="gray.600" fontSize="lg" fontWeight="medium">
-                    {job.location}
+                    {firstLetterCapital(job.location)}
                   </Text>
                 </Flex>
                 <Flex alignItems="center" gap={2}>
@@ -285,7 +289,8 @@ export default function JobsCard({ job }: { job: Job }) {
               href={job.applicationLink}
               target="_blank"
               rel="noopener noreferrer"
-              colorScheme="teal"
+              bg="#2a7879"
+              color="white"
               width="full"
               mt={8}
               rightIcon={<FaExternalLinkAlt />}
