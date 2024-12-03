@@ -38,6 +38,7 @@ const StartupForm = () => {
     applicationLink: "",
     tags: [] as string[],
     jobRole: "",
+    experience: "",
     remoteFriendly: "",
     email: "",
   });
@@ -132,6 +133,7 @@ const StartupForm = () => {
         jobDescription: "",
         applicationLink: "",
         tags: [],
+        experience: "",
         jobRole: "",
         remoteFriendly: "",
         email: "",
@@ -167,6 +169,7 @@ const StartupForm = () => {
       ></button>
     </span>
   );
+
   return (
     <>
       <Box
@@ -255,21 +258,46 @@ const StartupForm = () => {
                 style={{ height: "320px" }}
               />
             </FormControl>
+            <Flex textAlign="center" gap={4}>
+              <FormControl isRequired>
+                <FormLabel color="black" htmlFor="jobRole" fontSize="md">
+                  Job Role
+                </FormLabel>
+                <Input
+                  borderWidth="1px"
+                  borderColor="gray.300"
+                  bg="white"
+                  placeholder="e.g. Software Engineer"
+                  color="black"
+                  name="jobRole"
+                  value={jobData.jobRole}
+                  onChange={handleChange}
+                />
+              </FormControl>
 
-            <FormControl isRequired>
-              <FormLabel color="black" htmlFor="jobRole" fontSize="md">
-                Job Role
-              </FormLabel>
-              <Input
-                borderWidth="1px"
-                borderColor="gray.300"
-                bg="white"
-                color="black"
-                name="jobRole"
-                value={jobData.jobRole}
-                onChange={handleChange}
-              />
-            </FormControl>
+              <FormControl isRequired>
+                <FormLabel color="black" htmlFor="jobRole" fontSize="md">
+                  Experience
+                </FormLabel>
+                <Select
+                  borderWidth="1px"
+                  borderColor="gray.300"
+                  bg="white"
+                  color="black"
+                  name="experience"
+                  value={jobData.experience}
+                  onChange={handleChange}
+                >
+                  <option value="0-2">Intern</option>
+                  <option>Entry Level</option>
+                  <option>Associate</option>
+                  <option value="5-10">Mid-Senior</option>
+                  <option value="10+">Senior</option>
+                  <option value="15+">Director</option>
+                  <option value="20+">Contractor/Freelancer</option>
+                </Select>
+              </FormControl>
+            </Flex>
             <FormControl isRequired>
               <FormLabel color="black" htmlFor="jobDescription" fontSize="md">
                 Job Description
@@ -384,7 +412,7 @@ const StartupForm = () => {
 
                   <option value="Hardware">Hardware</option>
                   <option value="AI">AI</option>
-                  <option value="SAAS">SAAS</option>
+                  <option value="SAAS">SaaS</option>
                   <option value="Gaming">Gaming</option>
                   <option value="Education">Education</option>
                   <option value="Fintech">Fintech</option>

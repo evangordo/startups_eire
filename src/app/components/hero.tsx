@@ -112,15 +112,22 @@ export default function Hero({
           </>
         )}
         <Grid templateColumns={["1fr", "repeat(2, 1fr)"]} gap={6}>
-          <Input
-            placeholder="Startup Name"
+          <Select
+            placeholder="Experience"
             borderRadius="md"
             borderColor={inputBorderColor}
             size="lg"
-            onChange={handleSearchChange}
             focusBorderColor="teal.400"
             _placeholder={{ color: "gray.400" }}
-          />
+          >
+            <option>Intern</option>
+            <option>Entry Level</option>
+            <option>Associate</option>
+            <option>Mid-Senior</option>
+            <option>Senior</option>
+            <option>Director</option>
+            <option>Contractor/Freelancer</option>
+          </Select>
           <Input
             placeholder="Job Type (e.g., Software Engineer)"
             borderRadius="md"
@@ -167,7 +174,7 @@ export default function Hero({
             Search
           </Button>
         </Flex>
-        <Box
+        {/* <Box
           position="absolute"
           bottom={-10}
           left="50%"
@@ -182,7 +189,7 @@ export default function Hero({
           <Text>1000+ Jobs</Text>
           <Text>•</Text>
           <Text>100+ Tech Companies</Text>
-        </Box>
+        </Box> */}
       </Box>
     </Container>
   );

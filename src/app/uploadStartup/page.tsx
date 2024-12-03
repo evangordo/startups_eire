@@ -1,21 +1,8 @@
 "use client";
 import React from "react";
-import {
-  Box,
-  Flex,
-  Stack,
-  Heading,
-  Text,
-  Container,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Box, Flex, Stack, Heading, Text, Container } from "@chakra-ui/react";
 import StartupForm from "../components/form";
 
-const STARTUP_LOGOS = [
-  { name: "Startup 1", url: "logos/edgetier.png" },
-  { name: "Startup 2", url: "logos/wayflyer.png" },
-  { name: "Startup 3", url: "logos/nory.png" },
-];
 const UploadStartup = () => {
   return (
     <Box position={"relative"} minH="100vh" py={10}>

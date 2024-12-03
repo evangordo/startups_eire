@@ -26,6 +26,7 @@ model Startup {
   jobRole            String
   remoteFriendly     String?
   email              String
+  experience        String?
   createdAt          DateTime @default(now())
 
    

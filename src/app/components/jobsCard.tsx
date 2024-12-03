@@ -11,10 +11,14 @@ import {
   HStack,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaArrowCircleUp, FaArrowUp, FaExternalLinkAlt } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { FaCalendar } from "react-icons/fa";
 import { MdCategory } from "react-icons/md";
+import { FaLaptop } from "react-icons/fa";
+import { FaBriefcase } from "react-icons/fa";
+import ReactHtmlParser from "react-html-parser";
+
 import { FaArrowCircleDown } from "react-icons/fa";
 
 import React from "react";
@@ -32,6 +36,7 @@ interface Job {
   applicationLink: string;
   remoteFriendly: string;
   category: string;
+  experience: string;
 }
 
 export default function JobsCard({ job }: { job: Job }) {
@@ -42,6 +47,29 @@ export default function JobsCard({ job }: { job: Job }) {
     lg: true,
     xl: true,
   });
+
+  const DateToTimeAgo = (date: string) => {
+    const now = new Date();
+    const then = new Date(date);
+
+    const diffTime = Math.abs(now.getTime() - then.getTime());
+    const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffHours / 24);
+
+    if (diffHours < 1) {
+      return "Just now";
+    }
+
+    if (diffHours === 1) {
+      return "1 hour ago";
+    }
+
+    if (diffDays === 0) {
+      return `${diffHours} hours ago`;
+    }
+
+    return `${diffDays} days ago`;
+  };
 
   return (
     <Container maxW={"8xl"} mt={5} mb={5}>
@@ -91,19 +119,31 @@ export default function JobsCard({ job }: { job: Job }) {
               <Flex mt={6} gap={6} flexWrap="wrap">
                 <Flex alignItems="center" gap={2}>
                   <IoLocation size={20} color="#4A5568" />
-                  <Text color="gray.600" fontSize="md" fontWeight="medium">
+                  <Text color="gray.600" fontSize="lg" fontWeight="medium">
                     {job.location}
                   </Text>
                 </Flex>
                 <Flex alignItems="center" gap={2}>
                   <FaCalendar size={18} color="#4A5568" />
-                  <Text color="gray.600" fontSize="md" fontWeight="medium">
-                    {job.createdAt}
+                  <Text color="gray.600" fontSize="lg" fontWeight="medium">
+                    {DateToTimeAgo(job.createdAt)}
+                  </Text>
+                </Flex>
+                <Flex alignItems="center" gap={2}>
+                  <FaLaptop size={18} color="#4A5568" />
+                  <Text color="gray.600" fontSize="lg" fontWeight="medium">
+                    {job.remoteFriendly}
+                  </Text>
+                </Flex>
+                <Flex alignItems="center" gap={2}>
+                  <FaBriefcase size={18} color="#4A5568" />
+                  <Text color="gray.600" fontSize="lg" fontWeight="medium">
+                    {job.experience}
                   </Text>
                 </Flex>
                 <Flex alignItems="center" gap={2}>
                   <MdCategory size={20} color="#4A5568" />
-                  <Text color="gray.600" fontSize="md" fontWeight="medium">
+                  <Text color="gray.600" fontSize="lg" fontWeight="medium">
                     {job.category}
                   </Text>
                 </Flex>
@@ -149,7 +189,15 @@ export default function JobsCard({ job }: { job: Job }) {
             </Box>
 
             <Button
-              rightIcon={isDesktop ? <FaArrowCircleDown /> : undefined}
+              rightIcon={
+                isDesktop ? (
+                  isExpanded ? (
+                    <FaArrowCircleUp />
+                  ) : (
+                    <FaArrowCircleDown />
+                  )
+                ) : undefined
+              }
               colorScheme="teal"
               size={{ base: "md", md: "lg", lg: "xl" }}
               px={8}
@@ -180,14 +228,14 @@ export default function JobsCard({ job }: { job: Job }) {
                 </Heading>
                 <Box
                   bg="#f4f5ef"
-                  p={4}
+                  p={8}
                   borderRadius="lg"
                   border="1px"
                   borderColor="gray.200"
                   shadow="md"
                 >
                   <Text color="gray.600" mb={6}>
-                    {job.companyDescription}
+                    {ReactHtmlParser(job.companyDescription)}
                   </Text>
                 </Box>
               </Box>
@@ -198,32 +246,14 @@ export default function JobsCard({ job }: { job: Job }) {
                 </Heading>
                 <Box
                   bg="#f4f5ef"
-                  p={4}
+                  p={8}
                   borderRadius="lg"
                   border="1px"
                   borderColor="gray.200"
                   shadow="md"
                 >
                   <Text color="gray.600" mb={6}>
-                    {job.jobDescription}
-                  </Text>
-                </Box>
-              </Box>
-
-              <Box>
-                <Heading size="md" mb={4}>
-                  Remote Friendly
-                </Heading>
-                <Box
-                  bg="#f4f5ef"
-                  p={4}
-                  borderRadius="lg"
-                  border="1px"
-                  borderColor="gray.200"
-                  shadow="md"
-                >
-                  <Text color="gray.600" mb={6}>
-                    {job.remoteFriendly}
+                    {ReactHtmlParser(job.jobDescription)}
                   </Text>
                 </Box>
               </Box>
