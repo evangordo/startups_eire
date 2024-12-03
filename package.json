@@ -6,7 +6,8 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
-    "build": "prisma generate && next build"
+    "build": "prisma generate && next build",
+    "email": "email dev --dir src/app/email"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -16,6 +17,7 @@
     "@emotion/styled": "^11.13.0",
     "@next/font": "^14.2.15",
     "@prisma/client": "^6.0.0",
+    "@react-email/components": "^0.0.29",
     "@supabase/supabase-js": "^2.46.2",
     "@vercel/analytics": "^1.4.1",
     "framer-motion": "^11.3.31",
@@ -27,7 +29,9 @@
     "quill": "^2.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-email": "^3.0.3",
     "react-icons": "^5.3.0",
+    "resend": "^4.0.1",
     "swr": "^2.2.5"
   },
   "devDependencies": {

@@ -1,5 +1,6 @@
 "use server";
-import { redirect } from "next/navigation";
+import { Resend } from "resend";
+
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
   process.env.SUPABASE_URL || "",
@@ -7,6 +8,8 @@ const supabase = createClient(
 );
 
 import db from "@/app/lib/utils";
+import ResilientEmail from "../email/thanks";
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const submitStartup = async (formData: FormData) => {
   const name = formData.get("companyName");
@@ -31,7 +34,6 @@ export const submitStartup = async (formData: FormData) => {
         companyDescription: description,
         category,
         location,
-
         jobDescription,
         applicationLink,
         tags,
@@ -41,6 +43,11 @@ export const submitStartup = async (formData: FormData) => {
         logo: logoUrl,
       },
     });
+
+    const emailResponse = await sendEmail({ email: email as string });
+    if (!emailResponse.success) {
+      console.error("Failed to send email:", emailResponse.error);
+    }
 
     return { success: true };
   } catch (error) {
@@ -55,6 +62,28 @@ export const submitStartup = async (formData: FormData) => {
         error instanceof Error ? error.message : "Unknown error"
       }`
     );
+  }
+};
+
+export const sendEmail = async ({ email }: { email: string }) => {
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    await resend.emails.send({
+      from: `gordonevan99@gmail.com`,
+      to: email,
+      subject: "Your job is live on Startups Eire",
+      react: ResilientEmail(),
+    });
+    return {
+      error: null,
+      success: true,
+    };
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return {
+      error: error instanceof Error ? error.message : "Unknown error",
+      success: false,
+    };
   }
 };
 

@@ -34,8 +34,8 @@ export default function Navbar() {
               src={se}
               alt="Startups Eire"
               p={2}
-              width={{ base: 90, md: 100, lg: 100 }}
-              height={{ base: 90, md: 100, lg: 100 }}
+              width={{ base: 100, md: 100, lg: 100 }}
+              height={{ base: 100, md: 100, lg: 100 }}
             />
           </Link>
           {isDesktop && (
@@ -52,10 +52,7 @@ export default function Navbar() {
         </Flex>
         <Flex alignItems="center" p={8}>
           <Text fontSize="xl" mr={6}>
-            <Link href="/">Blog</Link>
-          </Text>
-          <Text fontSize="xl" mr={6}>
-            <Link href="/">Jobs</Link>
+            <Link href="/blog">Blog</Link>
           </Text>
 
           <Link href="/uploadstartup">

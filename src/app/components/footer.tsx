@@ -1,17 +1,34 @@
 "use client";
 
-import { Box, Text, Link, Flex, Icon } from "@chakra-ui/react";
+import { FaXTwitter } from "react-icons/fa6";
+import { Box, Container, Stack, Text } from "@chakra-ui/react";
+import Link from "next/link";
 
-import { FaGithub } from "react-icons/fa6";
 export default function Footer() {
   return (
-    <Box as="footer" py={4} textAlign="center" bg="gray.100">
-      <Flex justifyContent="center" alignItems="center">
-        <Link href="https://github.com" color="blue.500" isExternal>
-          StartupsEire
+    <Box>
+      <Container
+        as={Stack}
+        maxW={"xl"}
+        py={6}
+        direction={"row"}
+        spacing={4}
+        justify={"center"}
+        mt="auto"
+        width="100%"
+        align={"center"}
+      >
+        <Text ml={4}>Made by evangordo </Text>
+        <Link
+          href={"https://x.com/EvanGordon9343"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaXTwitter size={24} />
         </Link>
-        <Icon mx={2} as={FaGithub} color="black" />
-      </Flex>
+
+        <Stack direction={"row"} spacing={6}></Stack>
+      </Container>
     </Box>
   );
 }
