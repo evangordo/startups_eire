@@ -40,7 +40,7 @@ export default function Hero({
         shadow={"md"}
       >
         <Heading mb={8} textAlign={"center"} color="teal.600" fontWeight="bold">
-          Find a Job in the Irish Startup Ecosystem
+          Find a Job in the Irish Startup Ecosystem 🇮🇪
         </Heading>
         <Grid templateColumns={["1fr", "repeat(2, 1fr)"]} gap={6}>
           <Input

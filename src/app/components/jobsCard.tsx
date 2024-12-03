@@ -8,6 +8,7 @@ import {
   Avatar,
   Button,
   useBreakpointValue,
+  HStack,
 } from "@chakra-ui/react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
@@ -58,7 +59,7 @@ export default function JobsCard({ job }: { job: Job }) {
               <Flex alignItems="center">
                 <Avatar
                   src={job.logo}
-                  size="xl"
+                  size={{ base: "lg", md: "lg", lg: "xl" }}
                   border="2px"
                   borderColor="gray.200"
                   borderRadius="lg"
@@ -67,7 +68,7 @@ export default function JobsCard({ job }: { job: Job }) {
 
                 <Box ml={4}>
                   <Heading
-                    size="lg"
+                    size={{ base: "md", md: "lg", lg: "xl" }}
                     fontWeight="extrabold"
                     letterSpacing="tight"
                     color="gray.800"
@@ -107,28 +108,49 @@ export default function JobsCard({ job }: { job: Job }) {
                 </Flex>
               </Flex>
 
-              <Flex mt={6} gap={3} flexWrap="wrap">
-                {job.tags.map((tag: string) => (
-                  <Badge
-                    key={tag}
-                    colorScheme="teal"
-                    px={4}
-                    py={1.5}
-                    borderRadius="full"
-                    fontSize="sm"
-                    fontWeight="medium"
-                    textTransform="capitalize"
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </Flex>
+              {isDesktop ? (
+                <Flex mt={6} gap={3} flexWrap="wrap">
+                  {job.tags.map((tag: string) => (
+                    <Badge
+                      key={tag}
+                      colorScheme="teal"
+                      px={4}
+                      py={1.5}
+                      borderRadius="full"
+                      fontSize="md"
+                      fontWeight="medium"
+                      textTransform="capitalize"
+                      shadow="md"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </Flex>
+              ) : (
+                <HStack mt={2} spacing={3}>
+                  {job.tags.map((tag: string) => (
+                    <Badge
+                      key={tag}
+                      colorScheme="teal"
+                      px={4}
+                      py={1.5}
+                      borderRadius="full"
+                      fontSize="md"
+                      fontWeight="medium"
+                      textTransform="capitalize"
+                      shadow="md"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </HStack>
+              )}
             </Box>
 
             <Button
-              rightIcon={<FaArrowCircleDown />}
+              rightIcon={isDesktop ? <FaArrowCircleDown /> : undefined}
               colorScheme="teal"
-              size="lg"
+              size={{ base: "md", md: "lg", lg: "xl" }}
               px={8}
               py={6}
               fontWeight="bold"
@@ -139,7 +161,11 @@ export default function JobsCard({ job }: { job: Job }) {
               }}
               aria-label="Toggle job details"
             >
-              {isExpanded ? "Hide Details" : "View Details"}
+              {isExpanded
+                ? "Hide Details"
+                : isDesktop
+                ? "View Details"
+                : "View"}
             </Button>
           </Flex>
         </Box>
@@ -200,11 +226,11 @@ export default function JobsCard({ job }: { job: Job }) {
 
                 <Button
                   as="a"
+                  size={{ base: "md", md: "lg", lg: "xl" }}
                   href={job.applicationLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   colorScheme="teal"
-                  size="lg"
                   width="full"
                   mt={8}
                   rightIcon={<FaExternalLinkAlt />}
