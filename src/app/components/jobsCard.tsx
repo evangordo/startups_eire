@@ -42,7 +42,7 @@ export default function JobsCard({ job }: { job: Job }) {
   });
 
   return (
-    <Container maxW={"7xl"} mt={5} mb={5}>
+    <Container maxW={"8xl"} mt={5} mb={5}>
       <Box
         borderWidth={"1px"}
         borderColor={"gray.200"}
@@ -61,13 +61,17 @@ export default function JobsCard({ job }: { job: Job }) {
                   size="xl"
                   border="2px"
                   borderColor="gray.200"
+                  borderRadius="lg"
+                  shadow="md"
                 />
+
                 <Box ml={4}>
                   <Heading
                     size="lg"
                     fontWeight="extrabold"
                     letterSpacing="tight"
                     color="gray.800"
+                    borderRadius="lg"
                   >
                     {job.jobRole}
                   </Heading>
@@ -143,36 +147,76 @@ export default function JobsCard({ job }: { job: Job }) {
         {isExpanded && (
           <Box borderTop="1px" borderColor="gray.200" bg="gray.50" p={8}>
             <Flex gap={8}>
-              <Box flex="1">
+              <Box>
                 <Heading size="md" mb={4}>
                   About the Company
                 </Heading>
-                <Text color="gray.600" mb={6}>
-                  {job.companyDescription}
-                </Text>
+                <Box
+                  bg="#f4f5ef"
+                  p={4}
+                  borderRadius="lg"
+                  border="1px"
+                  borderColor="gray.200"
+                  shadow="md"
+                >
+                  <Text color="gray.600" mb={6}>
+                    {job.companyDescription}
+                  </Text>
+                </Box>
 
-                <Heading size="md" mb={4}>
+                <Heading size="md" mb={4} mt={8}>
                   About the Job
                 </Heading>
-                <Text color="gray.600" mb={6}>
-                  {job.jobDescription}
-                </Text>
+                <Box
+                  bg="#f4f5ef"
+                  p={4}
+                  borderRadius="lg"
+                  border="1px"
+                  borderColor="gray.200"
+                  shadow="md"
+                >
+                  <Text color="gray.600" mb={6}>
+                    {job.jobDescription}
+                  </Text>
+                </Box>
               </Box>
 
               <Box flex="1">
                 <Heading size="md" mb={4}>
                   Remote Friendly
                 </Heading>
-                <Text color="gray.600" mb={6}>
-                  {job.remoteFriendly}
-                </Text>
+                <Box
+                  bg="#f4f5ef"
+                  p={4}
+                  borderRadius="lg"
+                  border="1px"
+                  borderColor="gray.200"
+                  shadow="md"
+                >
+                  <Text color="gray.600" mb={6}>
+                    {job.remoteFriendly}
+                  </Text>
+                </Box>
 
                 <Button
+                  as="a"
+                  href={job.applicationLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   colorScheme="teal"
                   size="lg"
                   width="full"
                   mt={8}
                   rightIcon={<FaExternalLinkAlt />}
+                  _hover={{
+                    transform: "translateY(-2px)",
+                    boxShadow: "lg",
+                  }}
+                  _active={{
+                    transform: "translateY(0)",
+                  }}
+                  transition="all 0.2s"
+                  aria-label={`Apply for ${job.jobRole} position at ${job.companyName}`}
                 >
                   Apply Now
                 </Button>
