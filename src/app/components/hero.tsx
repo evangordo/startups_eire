@@ -51,18 +51,6 @@ export default function Hero({
         p={4}
         shadow={"lg"}
         position="relative"
-        _before={{
-          content: '""',
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          opacity: 0.05,
-          zIndex: 0,
-          backgroundImage: `url('/irish-pattern.png')`,
-          borderRadius: "lg",
-        }}
       >
         <Box
           position="absolute"
@@ -71,7 +59,6 @@ export default function Hero({
           w="60px"
           h="60px"
           opacity={0.1}
-          backgroundImage={`url('/shamrock.svg')`}
           backgroundSize="contain"
           backgroundRepeat="no-repeat"
         />
