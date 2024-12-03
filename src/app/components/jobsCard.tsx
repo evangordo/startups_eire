@@ -154,7 +154,8 @@ export default function JobsCard({ job }: { job: Job }) {
                   {job.tags.map((tag: string) => (
                     <Badge
                       key={tag}
-                      colorScheme="teal"
+                      bg="#2a7879"
+                      color="white"
                       px={4}
                       py={1.5}
                       borderRadius="full"
@@ -198,7 +199,8 @@ export default function JobsCard({ job }: { job: Job }) {
                   )
                 ) : undefined
               }
-              colorScheme="teal"
+              bg="#2a7879"
+              color="white"
               size={{ base: "md", md: "lg", lg: "xl" }}
               px={8}
               py={6}
@@ -234,7 +236,7 @@ export default function JobsCard({ job }: { job: Job }) {
                   borderColor="gray.200"
                   shadow="md"
                 >
-                  <Text color="gray.600" mb={6}>
+                  <Text color="black" fontSize="lg" mb={6}>
                     {ReactHtmlParser(job.companyDescription)}
                   </Text>
                 </Box>
@@ -252,7 +254,7 @@ export default function JobsCard({ job }: { job: Job }) {
                   borderColor="gray.200"
                   shadow="md"
                 >
-                  <Text color="gray.600" mb={6}>
+                  <Text color="black" fontSize="lg" mb={6}>
                     {ReactHtmlParser(job.jobDescription)}
                   </Text>
                 </Box>

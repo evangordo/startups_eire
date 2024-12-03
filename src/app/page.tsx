@@ -47,7 +47,7 @@ const LoadingSkeletons = () => {
   return (
     <>
       <Container
-        maxW={"7xl"}
+        maxW={"8xl"}
         mt={5}
         mb={5}
         display={"flex"}
@@ -56,7 +56,7 @@ const LoadingSkeletons = () => {
       >
         <Box padding="6" rounded={"xl"} boxShadow="lg" bg="white">
           <Flex alignItems={"center"} gap={5}>
-            <SkeletonCircle size="28" />
+            <SkeletonCircle size="28" rounded="md" />
             <Box flex="1">
               <SkeletonText
                 mt="4"
@@ -78,7 +78,7 @@ const LoadingSkeletons = () => {
         </Box>
         <Box padding="6" rounded={"xl"} boxShadow="lg" bg="white">
           <Flex alignItems={"center"} gap={5}>
-            <SkeletonCircle size="28" />
+            <SkeletonCircle size="28" rounded="md" />
             <Box flex="1">
               <SkeletonText
                 mt="4"
@@ -100,7 +100,7 @@ const LoadingSkeletons = () => {
         </Box>
         <Box padding="6" rounded={"xl"} boxShadow="lg" bg="white">
           <Flex alignItems={"center"} gap={5}>
-            <SkeletonCircle size="28" />
+            <SkeletonCircle size="28" rounded="md" />
             <Box flex="1">
               <SkeletonText
                 mt="4"
@@ -122,7 +122,7 @@ const LoadingSkeletons = () => {
         </Box>
         <Box padding="6" rounded={"xl"} boxShadow="lg" bg="white">
           <Flex alignItems={"center"} gap={5}>
-            <SkeletonCircle size="28" />
+            <SkeletonCircle size="28" rounded="md" />
             <Box flex="1">
               <SkeletonText
                 mt="4"
