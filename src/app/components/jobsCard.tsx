@@ -85,20 +85,20 @@ export default function JobsCard({ job }: { job: Job }) {
         bg="white"
         overflow="hidden"
       >
-        <Box p={8}>
+        <Box p={{ base: 4, md: 8 }}>
           <Flex justifyContent="space-between" alignItems="flex-start">
             <Box flex="1">
               <Flex alignItems="center">
                 <Avatar
                   src={job.logo}
-                  size={{ base: "lg", md: "lg", lg: "xl" }}
+                  size={{ base: "md", md: "lg", lg: "xl" }}
                   border="2px"
                   borderColor="gray.200"
                   borderRadius="lg"
                   shadow="md"
                 />
 
-                <Box ml={4}>
+                <Box ml={{ base: 2, md: 4 }} mt={1}>
                   <Heading
                     size={{ base: "md", md: "lg", lg: "xl" }}
                     fontWeight="extrabold"
@@ -106,14 +106,9 @@ export default function JobsCard({ job }: { job: Job }) {
                     color="gray.800"
                     borderRadius="lg"
                   >
-                    {job.jobRole}
+                    {job.jobRole.trim()}
                   </Heading>
-                  <Text
-                    color="gray.600"
-                    fontSize="xl"
-                    fontWeight="medium"
-                    mt={1}
-                  >
+                  <Text color="gray.600" fontSize="xl" fontWeight="medium">
                     {job.companyName}
                   </Text>
                 </Box>
@@ -205,8 +200,8 @@ export default function JobsCard({ job }: { job: Job }) {
               bg="#2a7879"
               color="white"
               size={{ base: "md", md: "lg", lg: "xl" }}
-              px={8}
-              py={6}
+              px={{ base: 4, md: 8 }}
+              py={{ base: 2, md: 6 }}
               fontWeight="bold"
               onClick={() => setIsExpanded(!isExpanded)}
               _hover={{
@@ -220,8 +215,8 @@ export default function JobsCard({ job }: { job: Job }) {
                   ? "Hide Details"
                   : "Hide"
                 : isDesktop
-                ? "View Details"
-                : "View"}
+                  ? "View Details"
+                  : "View"}
             </Button>
           </Flex>
         </Box>

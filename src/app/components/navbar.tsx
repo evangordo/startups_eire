@@ -34,8 +34,8 @@ export default function Navbar() {
               src={se}
               alt="Startups Eire"
               p={2}
-              width={{ base: 100, md: 100, lg: 100 }}
-              height={{ base: 100, md: 100, lg: 100 }}
+              width={{ base: "100%", md: 100, lg: 100 }}
+              height={{ base: "100%", md: 100, lg: 100 }}
             />
           </Link>
           {isDesktop && (
