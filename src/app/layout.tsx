@@ -9,7 +9,7 @@ import Navbar from "./components/navbar";
 
 export const metadata: Metadata = {
   title: "Startups Eire",
-  description: "Post a job or find a job in startups across Ireland.",
+  description: "Post or find a Job in the Irish Startups Ecosystem.",
   keywords: [
     "Startups in Ireland",
     "Startups Eire",

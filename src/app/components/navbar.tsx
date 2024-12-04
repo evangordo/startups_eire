@@ -46,7 +46,7 @@ export default function Navbar() {
               fontSize="4xl"
               fontWeight="extrabold"
             >
-              <Link href="/"> Startups Eire</Link>
+              <Link href="/">Startups Eire</Link>
             </Heading>
           )}
         </Flex>
