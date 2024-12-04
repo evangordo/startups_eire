@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import Hero from "./components/hero";
 import JobsCard from "./components/jobsCard";
-import { Flex } from "@chakra-ui/react";
-import { Container, SkeletonCircle } from "@chakra-ui/react";
-import { SkeletonText } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-
+import {
+  SkeletonText,
+  Text,
+  Container,
+  SkeletonCircle,
+  Flex,
+  Box,
+  Heading,
+} from "@chakra-ui/react";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface Job {
@@ -59,11 +63,11 @@ export default function Home() {
   );
 
   const handleSearch = () => {
-    setFilteredJobs(filterExperience || []);
+    setFilteredJobs(filterExperience || <JobNotFound />);
   };
 
   return (
-    <main>
+    <>
       <Hero
         setFilter={setFilter}
         filter={filter}
@@ -74,10 +78,12 @@ export default function Home() {
       />
       {isLoading ? (
         <LoadingSkeletons />
-      ) : (
+      ) : filteredJobs.length > 0 ? (
         filteredJobs.map((job: Job) => <JobsCard key={job.id} job={job} />)
+      ) : (
+        <JobNotFound />
       )}
-    </main>
+    </>
   );
 }
 
@@ -182,5 +188,13 @@ const LoadingSkeletons = () => {
         </Box>
       </Container>
     </>
+  );
+};
+
+const JobNotFound = () => {
+  return (
+    <Box mt={5} mb={5} textAlign={"center"}>
+      <Heading fontSize={"5xl"}>No Jobs Found</Heading>
+    </Box>
   );
 };
