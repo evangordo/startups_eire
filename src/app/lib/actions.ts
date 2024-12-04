@@ -69,7 +69,7 @@ export const sendEmail = async ({ email }: { email: string }) => {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
-      from: `gordonevan99@gmail.com`,
+      from: `evan@startupseire.com`,
       to: email,
       subject: "Your job is live on Startups Eire",
       react: ResilientEmail(),

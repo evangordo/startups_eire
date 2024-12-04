@@ -34,7 +34,7 @@ const ResilientEmail = () => (
             </Text>
 
             <Text style={text}>Best regards,</Text>
-            <Text style={text}>The Startups Eire Team</Text>
+            <Text style={text}>Evan</Text>
 
             <Text style={{ ...text, color: "#ababab" }}>
               If you didn&apos;t post this job, please contact us immediately.
