@@ -51,9 +51,7 @@ export default function Home() {
   );
 
   const filterLocation = filterSearch?.filter((job: Job) =>
-    location.length > 4
-      ? true
-      : job.location.toLowerCase().includes(location.toLowerCase())
+    job.location.toLowerCase().includes(location.toLowerCase())
   );
 
   const filterExperience = filterLocation?.filter((job: Job) =>
