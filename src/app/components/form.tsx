@@ -118,7 +118,7 @@ const StartupForm = () => {
     try {
       const response = await submitStartup(formDataToSubmit);
       toast({
-        title: "Startup submitted successfully",
+        title: "Job posted successfully",
         status: "success",
         position: "top",
         duration: 5000,
@@ -143,7 +143,9 @@ const StartupForm = () => {
       console.log("Startup submitted successfully:", response);
     } catch (error) {
       toast({
-        title: "Error submitting startup",
+        title: "Error posting job",
+        description: "Please try again later",
+        position: "top",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -293,8 +295,8 @@ const StartupForm = () => {
                   value={jobData.experience}
                   onChange={handleChange}
                 >
-                  <option value="internship">Internship</option>
-                  <option value="Entry Level">Entry Level</option>
+                  <option value="Internship">Internship</option>
+                  <option value="Entry-Level">Entry Level</option>
                   <option value="Associate">Associate</option>
                   <option value="Mid-Senior">Mid-Senior</option>
                   <option value="Senior">Senior</option>

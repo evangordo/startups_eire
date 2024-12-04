@@ -9,7 +9,6 @@ const supabase = createClient(
 
 import db from "@/app/lib/utils";
 import ResilientEmail from "../email/thanks";
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const submitStartup = async (formData: FormData) => {
   const name = formData.get("companyName");
