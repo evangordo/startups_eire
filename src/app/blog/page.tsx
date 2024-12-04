@@ -24,10 +24,10 @@ export default function BlogPage() {
             <CardBody>
               <Stack spacing={4}>
                 <Heading as="h2" size="lg">
-                  Sample Blog Post
+                  Sample Blog
                 </Heading>
                 <Text color="gray.600">
-                  This is a preview of the blog post content...
+                  This is a preview of the blog post content
                 </Text>
                 <Flex
                   justify="space-between"
@@ -35,7 +35,7 @@ export default function BlogPage() {
                   fontSize="sm"
                   color="gray.500"
                 >
-                  <Text>Jan 1, 2024</Text>
+                  <Text>December 4, 2024</Text>
                   <Button variant="link" colorScheme="blue">
                     Read More
                   </Button>
