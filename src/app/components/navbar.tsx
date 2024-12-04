@@ -55,7 +55,7 @@ export default function Navbar() {
             <Link href="/blog">Blog</Link>
           </Text>
 
-          <Link href="/uploadstartup">
+          <Link href="/uploadjob">
             <Button mr={6} bg="#2c797b" color="white" fontSize="xl" size="md">
               Post a Job
             </Button>
