@@ -29,8 +29,7 @@ const ResilientEmail = () => (
             <Heading style={h1}>Thank you for submitting!</Heading>
 
             <Text style={text}>
-              Thanks for posting your job on Startups Eire. We&apos;re excited
-              to help you find the perfect candidate for your position.
+              Thanks for posting your job on Startups Eire.
             </Text>
 
             <Text style={text}>Best regards,</Text>
