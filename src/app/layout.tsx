@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   keywords: [
     "Startups in Ireland",
     "Startups Eire",
+    "Startups",
+    "Jobs",
     "Job Opportunities",
     "Startup Jobs",
     "Startup Careers",
