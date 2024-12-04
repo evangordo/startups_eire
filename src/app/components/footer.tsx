@@ -1,12 +1,14 @@
 "use client";
 
 import { FaXTwitter } from "react-icons/fa6";
-import { Box, Container, Stack, Text } from "@chakra-ui/react";
+import { Box, Container, Stack, Text, Divider } from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function Footer() {
   return (
     <Box>
+      <Box bg="gray.100" width="100%" height="1px" />
+      <Divider borderColor="black" />
       <Container
         as={Stack}
         maxW={"xl"}
@@ -18,7 +20,10 @@ export default function Footer() {
         width="100%"
         align={"center"}
       >
-        <Text ml={4}>Made by evangordo </Text>
+        <Text ml={4} fontWeight={"bold"}>
+          Contact:
+        </Text>
+        <Text ml={-2}>evan@startupseire.com</Text>
         <Link
           href={"https://x.com/EvanGordon9343"}
           target="_blank"
@@ -26,9 +31,9 @@ export default function Footer() {
         >
           <FaXTwitter size={24} />
         </Link>
-
         <Stack direction={"row"} spacing={6}></Stack>
       </Container>
+      <Box bg="gray.100" width="100%" height="1px" />
     </Box>
   );
 }

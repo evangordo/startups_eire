@@ -40,6 +40,12 @@ interface Job {
 
 export default function JobsCard({ job }: { job: Job }) {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const isMobile = useBreakpointValue({
+    base: true,
+    md: false,
+    lg: false,
+    xl: false,
+  });
   const isDesktop = useBreakpointValue({
     base: false,
     md: true,
@@ -112,6 +118,41 @@ export default function JobsCard({ job }: { job: Job }) {
                     {job.companyName}
                   </Text>
                 </Box>
+                {isMobile && (
+                  <Box ml={2} mb={1}>
+                    <Button
+                      rightIcon={
+                        isDesktop ? (
+                          isExpanded ? (
+                            <FaArrowCircleUp />
+                          ) : (
+                            <FaArrowCircleDown />
+                          )
+                        ) : undefined
+                      }
+                      bg="#2a7879"
+                      color="white"
+                      size={{ base: "md", md: "lg", lg: "xl" }}
+                      px={{ base: 4, md: 8 }}
+                      py={{ base: 2, md: 6 }}
+                      fontWeight="bold"
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      _hover={{
+                        transform: "translateY(-1px)",
+                        shadow: "md",
+                      }}
+                      aria-label="Toggle job details"
+                    >
+                      {isExpanded
+                        ? isDesktop
+                          ? "Hide Details"
+                          : "Hide"
+                        : isDesktop
+                          ? "View Details"
+                          : "View"}
+                    </Button>
+                  </Box>
+                )}
               </Flex>
 
               <Flex mt={6} gap={6} flexWrap="wrap">
@@ -186,38 +227,41 @@ export default function JobsCard({ job }: { job: Job }) {
                 </HStack>
               )}
             </Box>
-
-            <Button
-              rightIcon={
-                isDesktop ? (
-                  isExpanded ? (
-                    <FaArrowCircleUp />
-                  ) : (
-                    <FaArrowCircleDown />
-                  )
-                ) : undefined
-              }
-              bg="#2a7879"
-              color="white"
-              size={{ base: "md", md: "lg", lg: "xl" }}
-              px={{ base: 4, md: 8 }}
-              py={{ base: 2, md: 6 }}
-              fontWeight="bold"
-              onClick={() => setIsExpanded(!isExpanded)}
-              _hover={{
-                transform: "translateY(-1px)",
-                shadow: "md",
-              }}
-              aria-label="Toggle job details"
-            >
-              {isExpanded
-                ? isDesktop
-                  ? "Hide Details"
-                  : "Hide"
-                : isDesktop
-                  ? "View Details"
-                  : "View"}
-            </Button>
+            {isDesktop && (
+              <Box ml={2}>
+                <Button
+                  rightIcon={
+                    isDesktop ? (
+                      isExpanded ? (
+                        <FaArrowCircleUp />
+                      ) : (
+                        <FaArrowCircleDown />
+                      )
+                    ) : undefined
+                  }
+                  bg="#2a7879"
+                  color="white"
+                  size={{ base: "md", md: "lg", lg: "xl" }}
+                  px={{ base: 4, md: 8 }}
+                  py={{ base: 2, md: 6 }}
+                  fontWeight="bold"
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  _hover={{
+                    transform: "translateY(-1px)",
+                    shadow: "md",
+                  }}
+                  aria-label="Toggle job details"
+                >
+                  {isExpanded
+                    ? isDesktop
+                      ? "Hide Details"
+                      : "Hide"
+                    : isDesktop
+                      ? "View Details"
+                      : "View"}
+                </Button>
+              </Box>
+            )}
           </Flex>
         </Box>
 
@@ -239,13 +283,14 @@ export default function JobsCard({ job }: { job: Job }) {
                   borderColor="gray.200"
                   shadow="md"
                 >
-                  <Text
+                  <Box
+                    className="description-content"
                     color="black"
                     fontSize={{ base: "md", md: "lg" }}
                     mb={6}
                   >
                     {parse(job.companyDescription)}
-                  </Text>
+                  </Box>
                 </Box>
               </Box>
 
@@ -261,13 +306,14 @@ export default function JobsCard({ job }: { job: Job }) {
                   borderColor="gray.200"
                   shadow="md"
                 >
-                  <Text
+                  <Box
+                    className="description-content"
                     color="black"
                     fontSize={{ base: "md", md: "lg" }}
                     mb={6}
                   >
                     {parse(job.jobDescription)}
-                  </Text>
+                  </Box>
                 </Box>
               </Box>
             </SimpleGrid>

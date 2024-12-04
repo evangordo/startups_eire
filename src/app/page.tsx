@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import Hero from "./components/hero";
 import JobsCard from "./components/jobsCard";
+import Footer from "./components/footer";
 import {
   SkeletonText,
   Text,
@@ -39,8 +40,12 @@ export default function Home() {
   const [experience, setExperience] = useState("");
 
   useEffect(() => {
-    if (data) {
-      setFilteredJobs(data);
+    const latestJobs = data?.sort(
+      (a: Job, b: Job) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+    if (latestJobs) {
+      setFilteredJobs(latestJobs);
     }
   }, [data]);
 
@@ -68,21 +73,25 @@ export default function Home() {
 
   return (
     <>
-      <Hero
-        setFilter={setFilter}
-        filter={filter}
-        setSearch={setSearch}
-        handleSearch={handleSearch}
-        setLocation={setLocation}
-        setExperience={setExperience}
-      />
-      {isLoading ? (
-        <LoadingSkeletons />
-      ) : filteredJobs.length > 0 ? (
-        filteredJobs.map((job: Job) => <JobsCard key={job.id} job={job} />)
-      ) : (
-        <JobNotFound />
-      )}
+      <Flex flexDirection={"column"} minH={"100vh"}>
+        <Hero
+          setFilter={setFilter}
+          filter={filter}
+          setSearch={setSearch}
+          handleSearch={handleSearch}
+          setLocation={setLocation}
+          setExperience={setExperience}
+        />
+        {error && <Error />}
+        {isLoading ? (
+          <LoadingSkeletons />
+        ) : filteredJobs.length > 0 ? (
+          filteredJobs.map((job: Job) => <JobsCard key={job.id} job={job} />)
+        ) : (
+          <JobNotFound />
+        )}
+      </Flex>
+      <Footer />
     </>
   );
 }
@@ -195,6 +204,14 @@ const JobNotFound = () => {
   return (
     <Box mt={5} mb={5} textAlign={"center"}>
       <Heading fontSize={"5xl"}>No Jobs Found</Heading>
+    </Box>
+  );
+};
+
+const Error = () => {
+  return (
+    <Box mt={5} mb={5} textAlign={"center"}>
+      <Heading fontSize={"5xl"}>Error fetching jobs</Heading>
     </Box>
   );
 };
